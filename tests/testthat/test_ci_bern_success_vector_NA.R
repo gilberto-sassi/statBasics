@@ -2,6 +2,7 @@ x0 <- c(2, 3, 5, NA, 5)
 n0 <- c(10, 8, 6, 20, NA)
 x1  <- c(2, 3, 5)
 n1 <- c(10, 8, 6)
+
 testthat::test_that("Number of sucess and confidence level 90% - type = 'two.sided'", {
     testthat::expect_equal(ci_bern(x0, n0, conf_level = 0.90, na.rm = T)$lower_ci, qnorm(0.05) / (2 * sqrt(sum(n1, na.rm = T))) + sum(x1, na.rm = T) / sum(n1, na.rm = T))
     testthat::expect_equal(ci_bern(x0, n0, conf_level = 0.90, na.rm = T)$upper_ci, qnorm(0.95) / (2 * sqrt(sum(n1, na.rm = T))) + sum(x1, na.rm = T) / sum(n1, na.rm = T))

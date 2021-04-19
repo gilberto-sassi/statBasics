@@ -1,5 +1,6 @@
 x <- c(2, 3, 5)
 n <- c(10, 8, 6)
+
 testthat::test_that("Number of sucess and confidence level 90% - type = 'two.sided'", {
     testthat::expect_equal(ci_bern(x, n, conf_level = 0.90)$lower_ci, qnorm(0.05) / (2 * sqrt(sum(n))) + sum(x) / sum(n))
     testthat::expect_equal(ci_bern(x, n, conf_level = 0.90)$upper_ci, qnorm(0.95) / (2 * sqrt(sum(n))) + sum(x) / sum(n))

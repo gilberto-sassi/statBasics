@@ -9,12 +9,14 @@ Authors@R:
 Maintainer: Gilberto Sassi <sassi.pereira.gilberto@gmail.com>
 Description: Basic statistical methods with some modifications for the course Statistical Methods at Federal University of Bahia (Brazil). All methods in this packages are explained in the text book of Montgomery and Runger (2010) <ISBN: 978-1-119-74635-5>.
 Imports:
-    tibble
+    tibble,
+    stats
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    EnvStats
 Config/testthat/edition: 3

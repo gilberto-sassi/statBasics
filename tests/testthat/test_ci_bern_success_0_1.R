@@ -1,4 +1,6 @@
 x <- rbinom(100, 1, prob = 0.75)
+
+
 testthat::test_that("Number of sucess and confidence level 90% - type = 'two.sided'", {
     testthat::expect_equal(ci_bern(x, conf_level = 0.90)$lower_ci, qnorm(0.05) / (2 * sqrt(sum(100))) + sum(x) / sum(100))
     testthat::expect_equal(ci_bern(x, conf_level = 0.90)$upper_ci, qnorm(0.95) / (2 * sqrt(sum(100))) + sum(x) / sum(100))

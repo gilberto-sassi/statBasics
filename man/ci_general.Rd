@@ -9,8 +9,9 @@ ci_general(x, conf_level = 0.95, type = "two.sided", na.rm = F)
 \arguments{
 \item{x}{a (non-empty) numeric vector.}
 
-\item{conf_level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.
-#' @param type a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "less".}
+\item{conf_level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
+
+\item{type}{a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "less".}
 
 \item{na.rm}{a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.}
 }
@@ -26,4 +27,5 @@ Confidence Interval for Mean
 \examples{
 x <- rpois(1000, lambda = 10)
 ci_general(x)
+
 }

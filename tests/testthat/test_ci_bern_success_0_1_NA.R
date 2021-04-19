@@ -1,5 +1,7 @@
 n <- 100
 x <- c(rbinom(n, 1, prob = 0.75), NA)
+
+
 testthat::test_that("Number of sucess and confidence level 90% - type = 'two.sided'", {
     testthat::expect_equal(ci_bern(x, conf_level = 0.90, na.rm = T)$lower_ci, qnorm(0.05) / (2 * sqrt(n)) + mean(x, na.rm = T))
     testthat::expect_equal(ci_bern(x, conf_level = 0.90, na.rm = T)$upper_ci, qnorm(0.95) / (2 * sqrt(n)) + mean(x, na.rm = T))

@@ -13,7 +13,7 @@ ci_bern(x, n = NULL, conf_level = 0.95, type = "two.sided", na.rm = F)
 
 \item{conf_level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
 
-\item{type}{a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "less".}
+\item{type}{a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "left".}
 
 \item{na.rm}{a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.}
 }
@@ -29,4 +29,5 @@ Confidence Interval for Proportion
 \examples{
 heads <- rbinom(1, size = 100, prob = .5)
 ci_bern(heads)
+
 }

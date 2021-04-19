@@ -20,18 +20,20 @@ ci_norm(
 
 \item{parameter}{a character string specifying the parameter in the normal distribution. Must be one of "mean" or "variance".}
 
-\item{conf_level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.
-#' @param type a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "less".}
+\item{conf_level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
+
+\item{type}{a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "less".}
 
 \item{na.rm}{a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.}
+}
+\value{
+A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectively.
 }
 \description{
 Confidence Interval for Normal Distribution
 }
 \details{
 \code{type} specifies the type of confidence interval. If \code{type} is "two.sided",  the returned confidence interval is \code{(lower_ci, upper_ci)} when \code{parameter} is "mean" or "variance". If \code{type} is "left", the returned confidence interval is \code{(lower_ci, Inf)} when \code{parameter} is "mean" or "variance". And, finally, is \code{type} is "right", the returned confidence interval is \code{(-Inf, upper_ci))} when \code{parameter} is "mean", and the returned confidence interval is \code{(0, upper_ci)} when \code{parameter} is "variance".
-
-#' @return A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectively.
 }
 \examples{
 x <- rnorm(1000)
@@ -42,4 +44,5 @@ ci_norm(x, sd_pop = 2) # known variance and confidence interval for mean
 
 x <- rnorm(1000, sd = 5)
 ci_norm(x, parameter = "variance") # confidence interval for variance
+
 }
