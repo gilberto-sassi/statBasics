@@ -29,11 +29,17 @@ ci_norm(
 Confidence Interval for Normal Distribution
 }
 \details{
-\code{type} specifies the type of confidence interval. If \code{type} is "two.sided",  the returned confidence interval is \code{(lower_ci, upper_ci)}. If \code{type} is "left", the returned confidence interval is \code{(lower_ci, Inf)}. And, finally, is \code{type} is "right", the returned confidence interval is \code{(-Inf, upper_ci))}.
+\code{type} specifies the type of confidence interval. If \code{type} is "two.sided",  the returned confidence interval is \code{(lower_ci, upper_ci)} when \code{parameter} is "mean" or "variance". If \code{type} is "left", the returned confidence interval is \code{(lower_ci, Inf)} when \code{parameter} is "mean" or "variance". And, finally, is \code{type} is "right", the returned confidence interval is \code{(-Inf, upper_ci))} when \code{parameter} is "mean", and the returned confidence interval is \code{(0, upper_ci)} when \code{parameter} is "variance".
 
 #' @return A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectively.
 }
 \examples{
 x <- rnorm(1000)
-ci_norm(x)
+ci_norm(x) # unknown variance and confidence interval for mean
+
+x <- rnorm(1000, sd = 2)
+ci_norm(x, sd_pop = 2) # known variance and confidence interval for mean
+
+x <- rnorm(1000, sd = 5)
+ci_norm(x, parameter = "variance") # confidence interval for variance
 }
