@@ -6,7 +6,7 @@ x1 <- x0[!is.na(x0)]
 
 lower <- function(conf_level, type = 'two.sided') {
   if (type == 'two.sided') {
-    return(2 * size * mean(x1) / qchisq((1 - conf_level) / 2, df = 2 * size))
+    return(2 * size * mean(x1) / qchisq((1 + conf_level) / 2, df = 2 * size))
   } else if (type == 'left') {
     return(2 * size * mean(x1) / qchisq(conf_level, df = 2 * size))
   } else if (type == 'right') {
@@ -16,7 +16,7 @@ lower <- function(conf_level, type = 'two.sided') {
 
 upper <- function(conf_level, type = 'two.sided') {
   if (type == 'two.sided') {
-    return(2 * size * mean(x1) / qchisq((1 + conf_level) / 2, df = 2 * size ))
+    return(2 * size * mean(x1) / qchisq((1 - conf_level) / 2, df = 2 * size ))
   } else if (type == 'left') {
      return(Inf)
   } else if (type == 'right') {

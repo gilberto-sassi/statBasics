@@ -31,8 +31,8 @@ ci_exp <- function(x, conf_level = 0.95, type = "two.sided", na.rm = F) {
 
   n <- length(x)
   if (type == "two.sided") {
-    lower_ci <- 2 * n * mean(x) / qchisq((1 - conf_level) / 2, df = 2 * n)
-    upper_ci <- 2 * n * mean(x) / qchisq((1 + conf_level) / 2, df = 2 * n)
+    lower_ci <- 2 * n * mean(x) / qchisq((1 + conf_level) / 2, df = 2 * n)
+    upper_ci <- 2 * n * mean(x) / qchisq((1 - conf_level) / 2, df = 2 * n)
   } else if (type == "left") {
     lower_ci <- 2 * n * mean(x) / qchisq(conf_level, df = 2 * n)
     upper_ci <- Inf
