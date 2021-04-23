@@ -38,7 +38,7 @@ ci_bern(n_success, size, conf_level = 0.99)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1    0.475    0.557       0.99
+#> 1    0.485    0.567       0.99
 ```
 
 ### Number of sucess in a vector
@@ -47,12 +47,12 @@ ci_bern(n_success, size, conf_level = 0.99)
 library(tidyverse)
 library(statBasics)
 n <- c(30, 20, 10)
-x <- seq_along(n) %>% map_int(~ sum(rbinom(1, size = n[.x], prob = 0.75)))
+x <- n %>% map_int(~ sum(rbinom(1, size = .x, prob = 0.75)))
 ci_bern(x, n, conf_level = 0.99)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1    0.617    0.950       0.99
+#> 1    0.600    0.933       0.99
 ```
 
 ### Vector of success
@@ -65,7 +65,7 @@ ci_bern(x, conf_level = 0.99)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1    0.678        1       0.99
+#> 1    0.578    0.942       0.99
 ```
 
 ## Confidence interval of mean (normal Distribution)
@@ -86,7 +86,7 @@ ci_norm(x, conf_level = 0.91)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     10.0     10.3       0.91
+#> 1     9.85     10.2       0.91
 ```
 
 ### Standard Deviation is known
@@ -101,7 +101,7 @@ ci_norm(x, sd_pop = sd_pop, conf_level = 0.91)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     9.72     10.4       0.91
+#> 1     9.70     10.4       0.91
 ```
 
 ## Confidence interval for standard deviation (normal distribution)
@@ -116,7 +116,7 @@ ci_norm(x, parameter = 'variance', conf_level = 0.91)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     3.22     5.23       0.91
+#> 1     2.95     4.78       0.91
 ```
 
 ## Confidence interval for mean (exponential distribution)
@@ -131,7 +131,7 @@ ci_exp(x)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     707.    1047.       0.95
+#> 1     685.    1015.       0.95
 ```
 
 ## Confidence interval for mean
@@ -148,5 +148,5 @@ ci_general(x)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     48.6     51.2       0.95
+#> 1     49.4     52.5       0.95
 ```

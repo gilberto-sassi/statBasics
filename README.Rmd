@@ -42,7 +42,7 @@ ci_bern(n_success, size, conf_level = 0.99)
 library(tidyverse)
 library(statBasics)
 n <- c(30, 20, 10)
-x <- seq_along(n) %>% map_int(~ sum(rbinom(1, size = n[.x], prob = 0.75)))
+x <- n %>% map_int(~ sum(rbinom(1, size = .x, prob = 0.75)))
 ci_bern(x, n, conf_level = 0.99)
 ```
 
