@@ -38,7 +38,7 @@ ci_bern(n_success, size, conf_level = 0.99)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1    0.459    0.541       0.99
+#> 1    0.434    0.516       0.99
 ```
 
 #### Number of sucess in a vector
@@ -52,7 +52,7 @@ ci_bern(x, n, conf_level = 0.99)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1    0.534    0.866       0.99
+#> 1    0.617    0.950       0.99
 ```
 
 #### Vector of success
@@ -65,7 +65,7 @@ ci_bern(x, conf_level = 0.99)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1    0.578    0.942       0.99
+#> 1    0.518    0.882       0.99
 ```
 
 ### Confidence interval of mean (normal Distribution)
@@ -86,7 +86,7 @@ ci_norm(x, conf_level = 0.91)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     9.68     10.0       0.91
+#> 1     9.89     10.2       0.91
 ```
 
 #### Standard Deviation is known
@@ -101,7 +101,7 @@ ci_norm(x, sd_pop = sd_pop, conf_level = 0.91)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     9.62     10.3       0.91
+#> 1     9.55     10.2       0.91
 ```
 
 ### Confidence interval for standard deviation (normal distribution)
@@ -116,7 +116,7 @@ ci_norm(x, parameter = 'variance', conf_level = 0.91)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     2.90     4.71       0.91
+#> 1     2.76     4.48       0.91
 ```
 
 ### Confidence interval for mean (exponential distribution)
@@ -131,7 +131,7 @@ ci_exp(x)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     690.    1022.       0.95
+#> 1     710.    1052.       0.95
 ```
 
 ### Confidence interval for mean
@@ -148,7 +148,7 @@ ci_general(x)
 #> # A tibble: 1 x 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     50.1     53.1       0.95
+#> 1     48.9     51.9       0.95
 ```
 
 ## Hypothesis testing
@@ -163,12 +163,9 @@ teaching purposes.
 In the examples below, `mean_null` is the mean in the null hypothesis
 `H0`:
 
-1.  `alternative == "two.sided"`: `H0: mu == mean_null` and `H1: mu !=
-    mean_null`. Default value.
-2.  `alternative == "less"`: `H0: mu >= mean_null` and `H1: mu <
-    mean_null`
-3.  `alternative == "greater"`: `H0: mu =< mean_null` and `H1: mu >
-    mean_null`
+1.  `alternative == "two.sided"`: `H0: mu == mean_null` and `H1: mu != mean_null`. Default value.
+2.  `alternative == "less"`: `H0: mu >= mean_null` and `H1: mu < mean_null`
+3.  `alternative == "greater"`: `H0: mu =< mean_null` and `H1: mu > mean_null`
 
 #### Normal distribution with known variance
 
@@ -182,7 +179,7 @@ ht_1pop_mean(x, mu = mean_null, conf_level = 0.95, sd_pop = sd_pop, alternative 
 #> # A tibble: 1 x 9
 #>   statistic p_value critical_value critical_region    alternative    mu lower_ci
 #>       <dbl>   <dbl>          <dbl> <chr>              <chr>       <dbl>    <dbl>
-#> 1      22.4       0           1.96 (-Inf,-1.960)U(1.… two.sided       5     9.10
+#> 1      24.4       0           1.96 (-Inf,-1.960)U(1.… two.sided       5     9.48
 #> # … with 2 more variables: upper_ci <dbl>, conf_level <dbl>
 ```
 
@@ -198,7 +195,7 @@ ht_1pop_mean(x, mu = mean_null, conf_level = 0.95, sd_pop = sd_pop, alternative 
 #> # A tibble: 1 x 9
 #>   statistic p_value critical_value critical_region    alternative    mu lower_ci
 #>       <dbl>   <dbl>          <dbl> <chr>              <chr>       <dbl>    <dbl>
-#> 1      23.7       0           1.96 (-Inf,-1.960)U(1.… two.sided       5     9.35
+#> 1      26.2       0           1.96 (-Inf,-1.960)U(1.… two.sided       5     9.85
 #> # … with 2 more variables: upper_ci <dbl>, conf_level <dbl>
 ```
 
@@ -207,12 +204,9 @@ ht_1pop_mean(x, mu = mean_null, conf_level = 0.95, sd_pop = sd_pop, alternative 
 In the examples below, `sigma_null` is the standard deviation in the
 null hypothesis `H0`:
 
-1.  `alternative == "two.sided"`: `H0: sigma == sigma_null` and `H1:
-    sigma != sigma_null`. Default value.
-2.  `alternative == "less"`: `H0: sigma >= sigma_null` and `H1: sigma <
-    sigma_null`
-3.  `alternative == "greater"`: `H0: sigma =< sigma_null` and `H1: sigma
-    > sigma_null`
+1.  `alternative == "two.sided"`: `H0: sigma == sigma_null` and `H1: sigma != sigma_null`. Default value.
+2.  `alternative == "less"`: `H0: sigma >= sigma_null` and `H1: sigma < sigma_null`
+3.  `alternative == "greater"`: `H0: sigma =< sigma_null` and `H1: sigma > sigma_null`
 
 <!-- end list -->
 
@@ -226,8 +220,8 @@ ht_1pop_var(x, sigma = sigma_null, conf_level = 0.95, alternative = "two.sided")
 #> # A tibble: 2 x 9
 #>   statistic  p_value critical_value critical_region   alternative sigma lower_ci
 #>       <dbl>    <dbl>          <dbl> <chr>             <chr>       <dbl>    <dbl>
-#> 1      18.8 7.07e-20           73.4 (0,73.361)U(128.… two.sided       4     2.34
-#> 2      18.8 7.07e-20          128.  (0,73.361)U(128.… two.sided       4     2.34
+#> 1      23.7 6.00e-16           73.4 (0,73.361)U(128.… two.sided       4     2.95
+#> 2      23.7 6.00e-16          128.  (0,73.361)U(128.… two.sided       4     2.95
 #> # … with 2 more variables: upper_ci <dbl>, conf_level <dbl>
 ```
 
@@ -257,7 +251,7 @@ ht_1pop_prop(x, 1000, proportion = p0, alternative = "two.sided", conf_level = 0
 #> # A tibble: 1 x 9
 #>   statistic p_value critical_value critical_region        alternative proportion
 #>       <dbl>   <dbl>          <dbl> <chr>                  <chr>            <dbl>
-#> 1      1.17   0.243           1.96 (-Inf,-1.960)U(1.960,… two.sided         0.75
+#> 1      1.31   0.189           1.96 (-Inf,-1.960)U(1.960,… two.sided         0.75
 #> # … with 3 more variables: lower_ci <dbl>, upper_ci <dbl>, conf_level <dbl>
 ```
 
@@ -277,7 +271,7 @@ ht_1pop_prop(x, n, proportion = p0, alternative = "less", conf_level = 0.99)
 #> # A tibble: 1 x 9
 #>   statistic p_value critical_value critical_region alternative proportion
 #>       <dbl>   <dbl>          <dbl> <chr>           <chr>            <dbl>
-#> 1    -0.596   0.275          -1.64 (-Inf,-1.645)   less              0.75
+#> 1      2.09   0.982          -1.64 (-Inf,-1.645)   less              0.75
 #> # … with 3 more variables: lower_ci <dbl>, upper_ci <dbl>, conf_level <dbl>
 ```
 
@@ -295,6 +289,6 @@ ht_1pop_prop(x, proportion = p0, alternative = "greater", conf_level = 0.95)
 #> # A tibble: 1 x 9
 #>   statistic p_value critical_value critical_region alternative proportion
 #>       <dbl>   <dbl>          <dbl> <chr>           <chr>            <dbl>
-#> 1      1.46  0.0721           1.64 (1.645, Inf)    greater           0.75
+#> 1     0.511   0.305           1.64 (1.645, Inf)    greater           0.75
 #> # … with 3 more variables: lower_ci <dbl>, upper_ci <dbl>, conf_level <dbl>
 ```
