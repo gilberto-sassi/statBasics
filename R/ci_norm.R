@@ -73,10 +73,10 @@ ci_norm <- function(x, sd_pop = NULL, parameter = "mean", conf_level = 0.95, typ
     }
   } else if (parameter == 'variance') {
     if (type == 'two.sided') {
-      lower_ci <- (n - 1) * sd(x) ^ 2 / qchisq((1 + conf_level) / 2, df = n - 1)
+      lower_ci <- max((n - 1) * sd(x) ^ 2 / qchisq((1 + conf_level) / 2, df = n - 1), 0)
       upper_ci <- (n - 1) * sd(x) ^ 2 / qchisq((1 - conf_level) / 2, df = n - 1)
     } else if (type == 'left') {
-      lower_ci <- (n - 1) * sd(x) ^ 2 / qchisq(conf_level, df = n - 1)
+      lower_ci <- max((n - 1) * sd(x) ^ 2 / qchisq(conf_level, df = n - 1), 0)
       upper_ci <- Inf
     } else if (type == 'right') {
       lower_ci <- 0
