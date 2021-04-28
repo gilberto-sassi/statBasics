@@ -61,9 +61,9 @@ ht_1pop_var <- function(x, sigma = 1, alternative = "two.sided", conf_level = NU
 
   if (!is.null(conf_level)) {
     ci <- ci_norm(x, conf_level = conf_level, parameter = 'variance')
-    output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, sigma, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
+    output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, sigma, sig_level, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
   } else {
-    output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, sigma)
+    output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, sigma, sig_level)
   }
 
   output

@@ -98,9 +98,9 @@ ht_1pop_prop <- function(x, n = NULL, proportion = 0.5, alternative = "two.sided
 
   if (!is.null(conf_level)) {
     ci <- ci_bern(x, n, conf_level = conf_level)
-    output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, proportion, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
+    output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, proportion, sig_level, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
   } else {
-    output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, proportion)
+    output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, proportion, sig_level)
   }
 
   output

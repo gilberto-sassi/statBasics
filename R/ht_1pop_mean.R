@@ -55,9 +55,9 @@ ht_1pop_mean <- function(x, mu = 0, sd_pop = NULL, alternative = 'two.sided', co
       critical_region <- stringr::str_interp("(-Inf,-$[2.3f]{critical_value})U($[2.3f]{critical_value}, Inf)")
       if (!is.null(conf_level)) {
         ci <- ci_norm(x, conf_level = conf_level)
-        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
+        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, sig_level, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
       } else {
-        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu)
+        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, sig_level)
       }
     } else if (alternative == 'less') {
       p_value <- pt(statistic, df = n - 1)
@@ -65,9 +65,9 @@ ht_1pop_mean <- function(x, mu = 0, sd_pop = NULL, alternative = 'two.sided', co
       critical_region <- stringr::str_interp("(-Inf, $[2.f]{critical_value})")
       if (!is.null(conf_level)) {
         ci <- ci_norm(x, conf_level = conf_level)
-        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
+        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, sig_level, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
       } else {
-        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu)
+        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, sig_level)
       }
     } else {
       p_value <- 1 - pt(statistic, df = n - 1)
@@ -75,9 +75,9 @@ ht_1pop_mean <- function(x, mu = 0, sd_pop = NULL, alternative = 'two.sided', co
       critical_region <- stringr::str_interp("($[2.3f]{critical_value}, Inf)")
       if (!is.null(conf_level)) {
         ci <- ci_norm(x, conf_level = conf_level)
-        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
+        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, sig_level, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
       } else {
-        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu)
+        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, sig_level)
       }
     }
   } else {
@@ -89,9 +89,9 @@ ht_1pop_mean <- function(x, mu = 0, sd_pop = NULL, alternative = 'two.sided', co
       critical_region <- stringr::str_interp("(-Inf,-$[2.3f]{critical_value})U($[2.3f]{critical_value}, Inf)")
       if (!is.null(conf_level)) {
         ci <- ci_norm(x, conf_level = conf_level, sd_pop = sd_pop)
-        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
+        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, sig_level, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
       } else {
-        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu)
+        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, sig_level)
       }
     } else if (alternative == 'less') {
       p_value <- pnorm(statistic)
@@ -99,9 +99,9 @@ ht_1pop_mean <- function(x, mu = 0, sd_pop = NULL, alternative = 'two.sided', co
       critical_region <- stringr::str_interp("(-Inf,-$[2.3f]{critical_value})")
       if (!is.null(conf_level)) {
         ci <- ci_norm(x, conf_level = conf_level, sd_pop = sd_pop)
-        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
+        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, sig_level, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
       } else {
-        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu)
+        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, sig_level)
       }
     } else {
       p_value <- 1 - pnorm(statistic)
@@ -109,9 +109,9 @@ ht_1pop_mean <- function(x, mu = 0, sd_pop = NULL, alternative = 'two.sided', co
       critical_region <- stringr::str_interp("($[2.3f]{critical_value}, Inf)")
       if (!is.null(conf_level)) {
         ci <- ci_norm(x, conf_level = conf_level, sd_pop = sd_pop)
-        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
+        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, sig_level, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
       } else {
-        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu)
+        output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, mu, sig_level)
       }
     }
   }
