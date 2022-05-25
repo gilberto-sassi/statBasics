@@ -1,28 +1,28 @@
 #' Confidence Interval for Normal Distribution
-#' 
+#'
 #' @param x a (non-empty) numeric vector.
 #' @param sd_pop a number specifying the known standard deviation of the population.
 #' @param parameter a character string specifying the parameter in the normal distribution. Must be one of "mean" or "variance".
 #' @param conf_level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
 #' @param type a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "less".
 #' @param na.rm a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.
-#' 
+#'
 #' @import stats
-#' 
+#'
 #' @details \code{type} specifies the type of confidence interval. If \code{type} is "two.sided",  the returned confidence interval is \code{(lower_ci, upper_ci)} when \code{parameter} is "mean" or "variance". If \code{type} is "left", the returned confidence interval is \code{(lower_ci, Inf)} when \code{parameter} is "mean" or "variance". And, finally, is \code{type} is "right", the returned confidence interval is \code{(-Inf, upper_ci))} when \code{parameter} is "mean", and the returned confidence interval is \code{(0, upper_ci)} when \code{parameter} is "variance".
-#' 
-#' @return A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectively.
-#' 
-#' @examples 
+#'
+#' @return A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectivel.
+#'
+#' @examples
 #' x <- rnorm(1000)
 #' ci_norm(x) # unknown variance and confidence interval for mean
-#' 
+#'
 #' x <- rnorm(1000, sd = 2)
 #' ci_norm(x, sd_pop = 2) # known variance and confidence interval for mean
-#' 
+#'
 #' x <- rnorm(1000, sd = 5)
 #' ci_norm(x, parameter = "variance") # confidence interval for variance
-#' 
+#'
 #' @export
 ci_norm <- function(x, sd_pop = NULL, parameter = "mean", conf_level = 0.95, type = "two.sided", na.rm = F) {
   if (!(type %in% c("two.sided", "left", "right"))) {

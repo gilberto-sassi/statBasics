@@ -21,11 +21,11 @@ knitr::opts_chunk$set(
 
 Here, we compute the confidence interval using the methods as presented by Montgomery and Runger (2010). All methods implemented are slighted modification of methods already implemented in `stats`. The user can compute bilateral and unilateral confidence intervals.
 
-### Confidence Intervalo for Proportion
+### Confidence Interval for Proportion
 
 There are three approaches to compute confidence interval for proportion in this package. 
 
-#### Number of sucess in `n` (scalar value) trials
+#### Number of success in `n` (scalar value) trials
 
 ```{r}
 library(tidyverse)
@@ -36,7 +36,7 @@ n_success <- sum(sample)
 ci_bern(n_success, size, conf_level = 0.99)
 ```
 
-#### Number of sucess in a vector
+#### Number of success in a vector
 
 ```{r}
 library(tidyverse)
@@ -117,7 +117,7 @@ ci_general(x)
 
 ## Hypothesis testing
 
-In the following, we will ilustrate the use of this package to test scientific hypothesis for one sample with examples. All methods are already implemented in `R`, I have only made slightly modifications to teaching purposes.
+In the following, we will illustrate the use of this package to test scientific hypothesis for one sample with examples. All methods are already implemented in `R`, I have only made slightly modifications to teaching purposes.
 
 ### Hypothesis testing for mean
 
@@ -202,7 +202,7 @@ x <- n %>% map_int(~ rbinom(1, .x, prob = p0))
 ht_1pop_prop(x, n, proportion = p0, alternative = "less", conf_level = 0.99)
 ```
 
-#### Vector of sucess (0 or 1)
+#### Vector of success (0 or 1)
 
 You can have the number of success (zero ou one).
 

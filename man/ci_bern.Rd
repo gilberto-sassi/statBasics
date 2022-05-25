@@ -15,7 +15,7 @@ ci_bern(x, n = NULL, conf_level = 0.95, type = "two.sided", na.rm = F)
 
 \item{type}{a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "left".}
 
-\item{na.rm}{a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.}
+\item{na.rm}{a logical value indicating whether \code{NA} values should be stripped before the computation proceeds.}
 }
 \value{
 A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectively.
@@ -24,7 +24,7 @@ A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values corr
 Confidence Interval for Proportion
 }
 \details{
-\code{type} specifies the type of confidence interval. If \code{type} is "two.sided",  the returned confidence interval is \code{(lower_ci, upper_ci)}. If \code{type} is "left", the returned confidence interval is \code{(lower_ci, 1)}. And, finall, is \code{type} is "right", the returned confidence interval is \code{(0, upper_ci))}.
+\code{type} specifies the type of confidence interval. If \code{type} is "two.sided",  the returned confidence interval is \code{(lower_ci, upper_ci)}. If \code{type} is "left", the returned confidence interval is \code{(lower_ci, 1)}. And, finally, is \code{type} is "right", the returned confidence interval is \code{(0, upper_ci))}.
 }
 \examples{
 heads <- rbinom(1, size = 100, prob = .5)

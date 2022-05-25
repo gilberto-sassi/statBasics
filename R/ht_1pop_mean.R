@@ -1,17 +1,17 @@
 #' Hypothesis Mean for Normal Distribution
-#' 
+#'
 #' @param x a (non-empty) numeric vector.
 #' @param mu a number indicating the true value of the mean. Default value is 0.
 #' @param sd_pop a number specifying the known standard deviation of the population. If \code{sd_pop == NULL}, we use the t-ttest. If \code{!is.null(sd_pop)}, we use the z-test. Default value is \code{NULL}.
 #' @param alternative a character string specifying the alternative hypothesis, must be one of ‘"two.sided"’ (default), ‘"greater"’ or ‘"less"’.  You can specify just the initial letter.
 #' @param conf_level a number indicating the confidence level to compute the confidence interval. If \code{conf_level = NULL}, then confidence interval is not included in the output. Default value is \code{NULL}.
-#' @param sig_level a number indicating the significance level to use in the General Procedure for Hypotheiss Testing.
+#' @param sig_level a number indicating the significance level to use in the General Procedure for Hypothesis Testing.
 #' @param na.rm a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.
-#' 
+#'
 #' @import stats stringr tibble
-#' 
+#'
 #' @details I have wrapped the \code{t.test} and the \code{BSDA::z.test} in a function as explained in the book of Montgomery and Runger (2010) <ISBN: 978-1-119-74635-5>.
-#' 
+#'
 #' @return a \code{tibble} with the following columns:
 #' \describe{
 #' \item{statistic}{the value of statistic.}
@@ -23,13 +23,13 @@
 #' \item{lower_ci}{lower bound of the confidence interval. Is is present only if \code{!is.null(con_level)}.}
 #' \item{upper_ci}{upper bound of the confidence interval. Is is present only if \code{!is.null(con_level)}.}
 #' }
-#' 
+#'
 #' @export
-#' 
+#'
 #' @examples
 #' sample <- rnorm(1000, mean = 10, sd = 2) #t-test
 #' ht_1pop_mean(sample, mu = -1) # H0: mu == -1
-#' 
+#'
 #' sample <- rnorm(1000, mean = 5, sd = 3) # z-test
 #' ht_1pop_mean(sample, mu = 0, sd_pop = 3, alternative = 'less') # H0: mu >= 0
 ht_1pop_mean <- function(x, mu = 0, sd_pop = NULL, alternative = 'two.sided', conf_level = NULL, sig_level = 0.05, na.rm = TRUE) {

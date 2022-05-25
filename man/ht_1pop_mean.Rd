@@ -25,7 +25,7 @@ ht_1pop_mean(
 
 \item{conf_level}{a number indicating the confidence level to compute the confidence interval. If \code{conf_level = NULL}, then confidence interval is not included in the output. Default value is \code{NULL}.}
 
-\item{sig_level}{a number indicating the significance level to use in the General Procedure for Hypotheiss Testing.}
+\item{sig_level}{a number indicating the significance level to use in the General Procedure for Hypothesis Testing.}
 
 \item{na.rm}{a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.}
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_exp.R
 \name{ci_exp}
 \alias{ci_exp}
-\title{Confidence Interval of Exponencial Distribution}
+\title{Confidence Interval of Exponential Distribution}
 \usage{
 ci_exp(x, conf_level = 0.95, type = "two.sided", na.rm = F)
 }
@@ -19,7 +19,7 @@ ci_exp(x, conf_level = 0.95, type = "two.sided", na.rm = F)
 A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectively.
 }
 \description{
-Confidence Interval of Exponencial Distribution
+Confidence Interval of Exponential Distribution
 }
 \details{
 "lower_ci" and "upper_ci" are computed using pivotal quantity, as explained by Montgomery and Runger <<ISBN: 978-1-119-74635-5>.

@@ -1,4 +1,4 @@
-#' Confidence Interval of Exponencial Distribution
+#' Confidence Interval of Exponential Distribution
 #'
 #' @param x a (non-empty) numeric vector.
 #' @param conf_level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
