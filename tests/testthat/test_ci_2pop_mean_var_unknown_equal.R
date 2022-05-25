@@ -12,24 +12,24 @@ y <- rnorm(size, mean = mean_pop_2, sd = sd_pop_2)
 testthat::test_that(
   "Comparing - mean difference, type = 'two.sided', conf_level = 90%",
   {
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.90)$lower_ci |> round(2), stats::t.test(x, y, conf.level = 0.90, var.equal = T)$conf.int[1] |> round(2))
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.90)$upper_ci |> round(2), stats::t.test(x, y, conf.level = 0.90, var.equal = T)$conf.int[2] |> round(2))
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.90)$lower_ci, stats::t.test(x, y, conf.level = 0.90, var.equal = T)$conf.int[1])
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.90)$upper_ci, stats::t.test(x, y, conf.level = 0.90, var.equal = T)$conf.int[2])
   }
 )
 
 testthat::test_that(
   "Comparing - mean difference, type = 'two.sided', conf_level = 95%",
   {
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.95)$lower_ci |> round(2), stats::t.test(x, y, conf.level = 0.95, var.equal = T)$conf.int[1] |> round(2))
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.95)$upper_ci |> round(2), stats::t.test(x, y, conf.level = 0.95, var.equal = T)$conf.int[2] |> round(2))
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.95)$lower_ci, stats::t.test(x, y, conf.level = 0.95, var.equal = T)$conf.int[1])
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.95)$upper_ci, stats::t.test(x, y, conf.level = 0.95, var.equal = T)$conf.int[2])
   }
 )
 
 testthat::test_that(
   "Comparing - mean difference, type = 'two.sided', conf_level = 99%",
   {
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.99)$lower_ci |> round(2), stats::t.test(x, y, conf.level = 0.99, var.equal = T)$conf.int[1] |> round(2))
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.99)$upper_ci |> round(2), stats::t.test(x, y, conf.level = 0.99, var.equal = T)$conf.int[2] |> round(2))
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.99)$lower_ci, stats::t.test(x, y, conf.level = 0.99, var.equal = T)$conf.int[1])
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.99)$upper_ci, stats::t.test(x, y, conf.level = 0.99, var.equal = T)$conf.int[2])
   }
 )
 
@@ -40,24 +40,24 @@ testthat::test_that(
 testthat::test_that(
   "Comparing - mean difference, type = 'left', conf_level = 90%",
   {
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.90, type = "left")$lower_ci |> round(2), stats::t.test(x, y, conf.level = 0.90, alternative = "less", var.equal = T)$conf.int[1] |> round(2))
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.90, type = "left")$upper_ci |> round(2), stats::t.test(x, y, conf.level = 0.90, alternative = "less", var.equal = T)$conf.int[2] |> round(2))
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.90, type = "left")$lower_ci, stats::t.test(x, y, conf.level = 0.90, alternative = "less", var.equal = T)$conf.int[1])
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.90, type = "left")$upper_ci, stats::t.test(x, y, conf.level = 0.90, alternative = "less", var.equal = T)$conf.int[2])
   }
 )
 
 testthat::test_that(
   "Comparing - mean difference, type = 'left', conf_level = 95%",
   {
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.95, type = "left")$lower_ci |> round(2), stats::t.test(x, y, conf.level = 0.95, alternative = "less", var.equal = T)$conf.int[1] |> round(2))
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.95, type = "left")$upper_ci |> round(2), stats::t.test(x, y, conf.level = 0.95, alternative = "less", var.equal = T)$conf.int[2] |> round(2))
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.95, type = "left")$lower_ci, stats::t.test(x, y, conf.level = 0.95, alternative = "less", var.equal = T)$conf.int[1])
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.95, type = "left")$upper_ci, stats::t.test(x, y, conf.level = 0.95, alternative = "less", var.equal = T)$conf.int[2])
   }
 )
 
 testthat::test_that(
   "Comparing - mean difference, type = 'left', conf_level = 99%",
   {
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.99, type = "left")$lower_ci |> round(2), stats::t.test(x, y, conf.level = 0.99, alternative = "less", var.equal = T)$conf.int[1] |> round(2))
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.99, type = "left")$upper_ci |> round(2), stats::t.test(x, y, conf.level = 0.99, alternative = "less", var.equal = T)$conf.int[2] |> round(2))
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.99, type = "left")$lower_ci, stats::t.test(x, y, conf.level = 0.99, alternative = "less", var.equal = T)$conf.int[1])
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.99, type = "left")$upper_ci, stats::t.test(x, y, conf.level = 0.99, alternative = "less", var.equal = T)$conf.int[2])
   }
 )
 
@@ -68,23 +68,23 @@ testthat::test_that(
 testthat::test_that(
   "Comparing - mean difference, type = 'right', conf_level = 90%",
   {
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.90, type = "right")$lower_ci |> round(2), stats::t.test(x, y, conf.level = 0.90, alternative = "greater", var.equal = T)$conf.int[1] |> round(2))
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.90, type = "right")$upper_ci |> round(2), stats::t.test(x, y, conf.level = 0.90, alternative = "greater", var.equal = T)$conf.int[2] |> round(2))
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.90, type = "right")$lower_ci, stats::t.test(x, y, conf.level = 0.90, alternative = "greater", var.equal = T)$conf.int[1])
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.90, type = "right")$upper_ci, stats::t.test(x, y, conf.level = 0.90, alternative = "greater", var.equal = T)$conf.int[2])
   }
 )
 
 testthat::test_that(
   "Comparing - mean difference, type = 'right', conf_level = 95%",
   {
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.95, type = "right")$lower_ci |> round(2), stats::t.test(x, y, conf.level = 0.95, alternative = "greater", var.equal = T)$conf.int[1] |> round(2))
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.95, type = "right")$upper_ci |> round(2), stats::t.test(x, y, conf.level = 0.95, alternative = "greater", var.equal = T)$conf.int[2] |> round(2))
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.95, type = "right")$lower_ci, stats::t.test(x, y, conf.level = 0.95, alternative = "greater", var.equal = T)$conf.int[1])
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.95, type = "right")$upper_ci, stats::t.test(x, y, conf.level = 0.95, alternative = "greater", var.equal = T)$conf.int[2])
   }
 )
 
 testthat::test_that(
   "Comparing - mean difference, type = 'right', conf_level = 99%",
   {
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.99, type = "right")$lower_ci |> round(2), stats::t.test(x, y, conf.level = 0.99, alternative = "greater", var.equal = T)$conf.int[1] |> round(2))
-    testthat::expect_equal(ci_2pop_norm(x, y, conf_level = 0.99, type = "right")$upper_ci |> round(2), stats::t.test(x, y, conf.level = 0.99, alternative = "greater", var.equal = T)$conf.int[2] |> round(2))
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.99, type = "right")$lower_ci, stats::t.test(x, y, conf.level = 0.99, alternative = "greater", var.equal = T)$conf.int[1])
+    testthat::expect_equal(tolerance = 0.01, ci_2pop_norm(x, y, conf_level = 0.99, type = "right")$upper_ci, stats::t.test(x, y, conf.level = 0.99, alternative = "greater", var.equal = T)$conf.int[2])
   }
 )
