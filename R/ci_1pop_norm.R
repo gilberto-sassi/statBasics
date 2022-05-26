@@ -15,16 +15,16 @@
 #'
 #' @examples
 #' x <- rnorm(1000)
-#' ci_norm(x) # unknown variance and confidence interval for mean
+#' ci_1pop_norm(x) # unknown variance and confidence interval for mean
 #'
 #' x <- rnorm(1000, sd = 2)
-#' ci_norm(x, sd_pop = 2) # known variance and confidence interval for mean
+#' ci_1pop_norm(x, sd_pop = 2) # known variance and confidence interval for mean
 #'
 #' x <- rnorm(1000, sd = 5)
-#' ci_norm(x, parameter = "variance") # confidence interval for variance
+#' ci_1pop_norm(x, parameter = "variance") # confidence interval for variance
 #'
 #' @export
-ci_norm <- function(x, sd_pop = NULL, parameter = "mean", conf_level = 0.95, type = "two.sided", na.rm = F) {
+ci_1pop_norm <- function(x, sd_pop = NULL, parameter = "mean", conf_level = 0.95, type = "two.sided", na.rm = F) {
   if (!(type %in% c("two.sided", "left", "right"))) {
     stop("'type' must be one of 'two.sided', 'left' or 'right'.")
   }

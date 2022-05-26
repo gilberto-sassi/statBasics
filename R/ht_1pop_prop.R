@@ -1,7 +1,7 @@
 #' Hypothesis Testing for Proportion
-#' 
-#' One-sample test to proportion. 
-#' 
+#'
+#' One-sample test to proportion.
+#'
 #' @param x a (non-empty) numeric vector indicating the number of success. It can also be a vector with number of success, and it can be vector of 0 and 1.
 #' @param n a (non-empty) numeric vector indicating the number of trials. It can also be a vector with number of trials (if \code{x} is vector of success), and it can be \code{NULL} (if \code{x} is a vector of 0 e 1).
 #' @param proportion a number between 0 e 1 indicating the value in the null hypothesis. Default value is 0.5.
@@ -9,11 +9,11 @@
 #' @param conf_level a number indicating the confidence level to compute the confidence interval. If \code{conf_level = NULL}, then confidence interval is not included in the output. Default value is \code{NULL}.
 #' @param sig_level a number indicating the significance level to use in the General Procedure for Hypotheiss Testing.
 #' @param na.rm a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.
-#' 
+#'
 #' @import stats stringr tibble
-#' 
+#'
 #' @details I have wrapped the book of Millard and Neerchal (2001) <ISBN: 978-0-367-39814-9>.
-#' 
+#'
 #' @return a \code{tibble} with the following columns:
 #' \describe{
 #' \item{statistic}{the value of statistic.}
@@ -25,20 +25,20 @@
 #' \item{lower_ci}{lower bound of the confidence interval. Is is present only if \code{!is.null(con_level)}.}
 #' \item{upper_ci}{upper bound of the confidence interval. Is is present only if \code{!is.null(con_level)}.}
 #' }
-#' 
+#'
 #' @import stats stringr tibble
-#' 
+#'
 #' @export
-#' 
-#' @examples 
+#'
+#' @examples
 #' amostra <- rbinom(1, size = 100, prob = 0.75)
 #' ht_1pop_prop(amostra, proportion = 0.75, 100, conf_level = 0.99)
-#' 
+#'
 #' amostra <- c(rbinom(1, size = 10, prob = 0.75),
 #' rbinom(1, size = 20, prob = 0.75),
 #' rbinom(1, size = 30, prob = 0.75))
 #' ht_1pop_prop(amostra, c(10, 20, 30), proportion = 0.99, conf_level = 0.90, alternative = 'less')
-#' 
+#'
 #' amostra <- rbinom(100, 1, prob = 0.75)
 #' ht_1pop_prop(amostra, proportion = 0.01, conf_level = 0.95, alternative = 'greater')
 ht_1pop_prop <- function(x, n = NULL, proportion = 0.5, alternative = "two.sided", conf_level = NULL, sig_level = 0.05, na.rm = TRUE) {
@@ -97,7 +97,7 @@ ht_1pop_prop <- function(x, n = NULL, proportion = 0.5, alternative = "two.sided
   }
 
   if (!is.null(conf_level)) {
-    ci <- ci_bern(x, n, conf_level = conf_level)
+    ci <- ci_1pop_bern(x, n, conf_level = conf_level)
     output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, proportion, sig_level, lower_ci = ci$lower_ci, upper_ci = ci$upper_ci, conf_level = ci$conf_level)
   } else {
     output <- tibble::tibble(statistic, p_value, critical_value, critical_region, alternative, proportion, sig_level)

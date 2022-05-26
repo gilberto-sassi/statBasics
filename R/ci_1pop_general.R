@@ -1,22 +1,22 @@
 #' Confidence Interval for Mean
-#' 
+#'
 #' @param x a (non-empty) numeric vector.
 #' @param conf_level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
 #' @param type a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "less".
 #' @param na.rm a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.
-#' 
+#'
 #' @import stats
-#' 
+#'
 #' @details "lower_ci" and "upper_ci" are computed using `t.test` function.
-#' 
+#'
 #' @return A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectively.
-#' 
-#' @examples 
+#'
+#' @examples
 #' x <- rpois(1000, lambda = 10)
-#' ci_general(x)
-#' 
+#' ci_1pop_general(x)
+#'
 #' @export
-ci_general <- function(x, conf_level = 0.95, type = "two.sided", na.rm = F) {
+ci_1pop_general <- function(x, conf_level = 0.95, type = "two.sided", na.rm = F) {
   if (!(type %in% c("two.sided", "left", "right"))) {
     stop("'type' must be one of 'two.sided', 'left' or 'right'.")
   }

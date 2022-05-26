@@ -46,6 +46,6 @@ One-Sample chi-squared test on variance.
 I have wrapped the \code{EnvStats::varTest} in a function as explained in the book of Montgomery and Runger (2010) <ISBN: 978-1-119-74635-5> and in the book of Millard and Neerchal (2001) <ISBN: 978-0-367-39814-9>.
 }
 \examples{
-sample <- rnorm(1000, mean = 10, sd = 2) 
+sample <- rnorm(1000, mean = 10, sd = 2)
 ht_1pop_var(sample, sigma = 1) # H0: sigma = 1
 }

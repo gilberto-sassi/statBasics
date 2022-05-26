@@ -13,10 +13,10 @@
 #'
 #' @examples
 #' x <- rexp(1000)
-#' ci_exp(x)
+#' ci_1pop_exp(x)
 #'
 #' @export
-ci_exp <- function(x, conf_level = 0.95, type = "two.sided", na.rm = F) {
+ci_1pop_exp <- function(x, conf_level = 0.95, type = "two.sided", na.rm = F) {
   if (!(type %in% c("two.sided", "left", "right"))) {
     stop("'type' must be one of 'two.sided', 'left' or 'right'.")
   }

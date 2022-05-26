@@ -33,7 +33,7 @@ library(statBasics)
 size  <- 1000
 sample <- rbinom(size, 1, prob = 0.5)
 n_success <- sum(sample)
-ci_bern(n_success, size, conf_level = 0.99)
+ci_1pop_bern(n_success, size, conf_level = 0.99)
 ```
 
 #### Number of success in a vector
@@ -42,8 +42,8 @@ ci_bern(n_success, size, conf_level = 0.99)
 library(tidyverse)
 library(statBasics)
 n <- c(30, 20, 10)
-x <- n %>% map_int(~ sum(rbinom(1, size = .x, prob = 0.75)))
-ci_bern(x, n, conf_level = 0.99)
+x <- n |> map_int(~ sum(rbinom(1, size = .x, prob = 0.75)))
+ci_1pop_bern(x, n, conf_level = 0.99)
 ```
 
 #### Vector of success
@@ -52,7 +52,7 @@ ci_bern(x, n, conf_level = 0.99)
 library(tidyverse)
 library(statBasics)
 x <- rbinom(50, size = 1, prob = 0.75)
-ci_bern(x, conf_level = 0.99)
+ci_1pop_bern(x, conf_level = 0.99)
 ```
 
 ### Confidence interval of mean (normal Distribution)
@@ -67,7 +67,7 @@ library(statBasics)
 media_pop <- 10
 sd_pop <- 2
 x <- rnorm(100, mean = media_pop)
-ci_norm(x, conf_level = 0.91)
+ci_1pop_norm(x, conf_level = 0.91)
 ```
 
 #### Standard Deviation is known
@@ -78,7 +78,7 @@ library(statBasics)
 media_pop <- 10
 sd_pop <- 2
 x <- rnorm(100, mean = media_pop, sd = sd_pop)
-ci_norm(x, sd_pop = sd_pop, conf_level = 0.91)
+ci_1pop_norm(x, sd_pop = sd_pop, conf_level = 0.91)
 ```
 
 ### Confidence interval for standard deviation (normal distribution)
@@ -89,7 +89,7 @@ library(statBasics)
 media_pop <- 10
 sd_pop <- 2
 x <- rnorm(100, mean = media_pop, sd = sd_pop)
-ci_norm(x, parameter = 'variance', conf_level = 0.91)
+ci_1pop_norm(x, parameter = 'variance', conf_level = 0.91)
 ```
 
 ### Confidence interval for mean (exponential distribution)
@@ -100,7 +100,7 @@ library(statBasics)
 media_pop <- 800
 taxa_pop <- 1 / media_pop
 x <- rexp(100, rate = taxa_pop)
-ci_exp(x)
+ci_1pop_exp(x)
 ```
 
 ### Confidence interval for mean
@@ -112,7 +112,7 @@ library(tidyverse)
 library(statBasics)
 media_pop <- 50
 x <- rpois(100, lambda  = media_pop)
-ci_general(x)
+ci_1pop_general(x)
 ```
 
 ## Hypothesis testing
@@ -198,7 +198,7 @@ library(statBasics)
 proportion_null <- 0.9
 p0 <- 0.75
 n <- c(10, 20, 30)
-x <- n %>% map_int(~ rbinom(1, .x, prob = p0))
+x <- n |> map_int(~ rbinom(1, .x, prob = p0))
 ht_1pop_prop(x, n, proportion = p0, alternative = "less", conf_level = 0.99)
 ```
 

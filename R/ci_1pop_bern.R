@@ -14,10 +14,10 @@
 #'
 #' @examples
 #' heads <- rbinom(1, size = 100, prob = .5)
-#' ci_bern(heads)
+#' ci_1pop_bern(heads)
 #'
 #' @export
-ci_bern <- function(x, n = NULL, conf_level = 0.95, type = "two.sided", na.rm = F) {
+ci_1pop_bern <- function(x, n = NULL, conf_level = 0.95, type = "two.sided", na.rm = F) {
   if (!(type %in% c("two.sided", "left", "right"))) {
     stop("'type' must be one of 'two.sided', 'left' or 'right'.")
   }
