@@ -6,8 +6,8 @@
 #'
 #' @param x a (non-empty) numeric vector.
 #' @param y a (non-empty) numeric vector.
-#' @param sd_pop_1 a number specifying the known standard deviation of the first population.
-#' @param sd_pop_2 a number specifying the known standard deviation of the second population.
+#' @param sd_pop_1 a number specifying the known standard deviation of the first population. Default value is \code{NULL}.
+#' @param sd_pop_2 a number specifying the known standard deviation of the second population. Default value is \code{NULL}.
 #' @param var_equal a logical variable indicating whether to treat the two variances as being equal. If \code{TRUE} then the pooled variance is used to estimate the variance otherwise the Welch (or Satterthwaite) approximation to the degrees of freedom is used.
 #' @param parameter a character string specifying the parameter in the normal distribution. Must be one of "mean" (confidence interval for mean difference) or "variance" (confidence interval for variance ratio). Default value is "mean".
 #' @param conf_level confidence level of the returned confidence interval. Must be a single number between 0 and 1, usually greater than 90%.
@@ -70,7 +70,7 @@ ci_2pop_norm <- function(x, y, sd_pop_1 = NULL, sd_pop_2 = NULL, var_equal = FAL
 # known variance ----------------------------------------------------------
 
       if (type == "left") {
-        lower_ci<- -Inf
+        lower_ci <- -Inf
         upper_ci <- qnorm(conf_level) * sqrt((sd_pop_1^2) / size_x + (sd_pop_2^2) / size_y) + mean(x) - mean(y)
       } else if (type == "right") {
         lower_ci <- qnorm(1 - conf_level) * sqrt((sd_pop_1^2) / size_x + (sd_pop_2^2) / size_y) + mean(x) - mean(y)

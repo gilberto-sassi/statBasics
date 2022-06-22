@@ -36,7 +36,7 @@ Computes the interval for different of 2 proportions from 2 distinct and indepen
 \details{
 \code{type} specifies the type of confidence interval. If \code{type} is "two.sided",  the returned confidence interval is \code{(lower_ci, upper_ci)}. If \code{type} is "left", the returned confidence interval is \code{(lower_ci, Inf)}. And, finally, is \code{type} is "right", the returned confidence interval is \code{(-Inf, upper_ci))}.
 
-If \code{is.null(n_x) == T} and \code{is.null(n_y) == T}, then \code{x} and \code{y} must be a numeric value of 0 and 1 and the proportions are computed using \code{x} and \code{y}. If \code{is.null(n_x) == F} and \code{is.null(n_y) == F}, then  \code{x}, \code{y}, \ocde{n_x} and \code{n_y} must be non-negative integer scalar and \code{x <= n_x} and \code{y <= n_y}.
+If \code{is.null(n_x) == T} and \code{is.null(n_y) == T}, then \code{x} and \code{y} must be a numeric value of 0 and 1 and the proportions are computed using \code{x} and \code{y}. If \code{is.null(n_x) == F} and \code{is.null(n_y) == F}, then  \code{x}, \code{y}, \code{n_x} and \code{n_y} must be non-negative integer scalar and \code{x <= n_x} and \code{y <= n_y}.
 }
 \examples{
 x <- 3

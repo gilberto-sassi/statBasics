@@ -1,4 +1,4 @@
-#' Hypothesis Mean for Normal Distribution
+#' Hypothesis testing for Mean for Normal Distribution
 #'
 #' @param x a (non-empty) numeric vector.
 #' @param mu a number indicating the true value of the mean. Default value is 0.

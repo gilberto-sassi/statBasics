@@ -13,7 +13,7 @@
 #' @import stats
 #'
 #' @details \code{type} specifies the type of confidence interval. If \code{type} is "two.sided",  the returned confidence interval is \code{(lower_ci, upper_ci)}. If \code{type} is "left", the returned confidence interval is \code{(lower_ci, Inf)}. And, finally, is \code{type} is "right", the returned confidence interval is \code{(-Inf, upper_ci))}.
-#' @details If \code{is.null(n_x) == T} and \code{is.null(n_y) == T}, then \code{x} and \code{y} must be a numeric value of 0 and 1 and the proportions are computed using \code{x} and \code{y}. If \code{is.null(n_x) == F} and \code{is.null(n_y) == F}, then  \code{x}, \code{y}, \ocde{n_x} and \code{n_y} must be non-negative integer scalar and \code{x <= n_x} and \code{y <= n_y}.
+#' @details If \code{is.null(n_x) == T} and \code{is.null(n_y) == T}, then \code{x} and \code{y} must be a numeric value of 0 and 1 and the proportions are computed using \code{x} and \code{y}. If \code{is.null(n_x) == F} and \code{is.null(n_y) == F}, then  \code{x}, \code{y}, \code{n_x} and \code{n_y} must be non-negative integer scalar and \code{x <= n_x} and \code{y <= n_y}.
 #'
 #' @return A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectivel.
 #'
