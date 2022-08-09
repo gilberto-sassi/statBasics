@@ -1,11 +1,15 @@
 Package: statBasics
 Title: Basic Functions to Statistical Methods Course
 Version: 0.2.0
-Authors@R: 
+Authors@R: c(
     person(given = "Gilberto",
            family = "Sassi",
            role = c("aut", "cre"),
-           email = "sassi.pereira.gilberto@gmail.com")
+           email = "sassi.pereira.gilberto@gmail.com"),
+    person(given = "Carolina",
+           family = "Costa Mota Paraíba",
+           role = c("aut"),
+           email = "ccmparaiba@gmail.com"))
 Maintainer: Gilberto Sassi <sassi.pereira.gilberto@gmail.com>
 Description: Basic statistical methods with some modifications for the course Statistical Methods at Federal University of Bahia (Brazil). All methods in this packages are explained in the text book of Montgomery and Runger (2010) <ISBN: 978-1-119-74635-5>.
 Imports:

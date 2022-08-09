@@ -4,11 +4,11 @@
 #'
 #' @param x a (non-empty) numeric vector.
 #' @param y a (non-empty) numeric vector.
-#' @param delta a scalar value indicating the difference in means (\eqn{\Delta_0}). Default value is \code{delta == 0}.
+#' @param delta a scalar value indicating the difference in means (\eqn{\Delta_0}). Default value is 0.
 #' @param sd_pop_1 a number specifying the known standard deviation of the first population. Default value is \code{NULL}.
 #' @param sd_pop_2 a number specifying the known standard deviation of the second population. Default value is \code{NULL}.
 #' @param var_equal a logical variable indicating whether to treat the two variances as being equal. If \code{TRUE} then the pooled variance is used to estimate the variance otherwise the Welch (or Satterthwaite) approximation to the degrees of freedom is used. Default value is \code{FALSE}.
-#' @param alternative a character string specifying the alternative hypothesis, must be one of ‘"two.sided"’ (default), ‘"greater"’ or ‘"less"’.  You can specify just the initial letter.
+#' @param alternative a character string specifying the alternative hypothesis, must be one of ‘"two.sided"’ (default), ‘"greater"’ or ‘"less"’.
 #' @param conf_level a number indicating the confidence level to compute the confidence interval. If \code{conf_level = NULL}, then confidence interval is not included in the output. Default value is \code{NULL}.
 #' @param sig_level a number indicating the significance level to use in the General Procedure for Hypothesis Testing.
 #' @param na_rm a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.
@@ -33,12 +33,19 @@
 #' # t-test: var_equal == FALSE
 #' x <- rnorm(1000, mean = 10, sd = 2)
 #' y <- rnorm(500, mean = 5, sd = 1)
-#' ht_2pop_mean(x, y, delta = -1) # H0: mu_1 - mu_2 == -1 versus H1: mu_1 - mu_2 != -1
+#' # H0: mu_1 - mu_2 == -1 versus H1: mu_1 - mu_2 != -1
+#' ht_2pop_mean(x, y, delta = -1)
+#' # t-test: var_equal == TRUE
+#' x <- rnorm(1000, mean = 10, sd = 2)
+#' y <- rnorm(500, mean = 5, sd = 2)
+#' # H0: mu_1 - mu_2 == -1 versus H1: mu_1 - mu_2 != -1
+#' ht_2pop_mean(x, y, delta = -1, var_equal = TRUE)
 #'
 #' # z-test
 #' x <- rnorm(1000, mean = 10, sd = 3)
 #' x <- rnorm(500, mean = 5, sd = 1)
-#' ht_2pop_mean(x, y, delta = 0, sd_pop_x = 3, sd_pop_y = 1, alternative = 'less') # H0: mu_1 - mu_2 >= 0 versus H1: mu_1 - mu_2 < 0
+#' # H0: mu_1 - mu_2 >= 0 versus H1: mu_1 - mu_2 < 0
+#' ht_2pop_mean(x, y, delta = 0, sd_pop_1 = 3, sd_pop_2 = 1)
 ht_2pop_mean <- function(x, y, delta = 0, sd_pop_1 = NULL, sd_pop_2 = NULL, var_equal = FALSE, alternative = 'two.sided', conf_level = NULL, sig_level = 0.05, na_rm = TRUE) {
   if (!(alternative %in% c("two.sided", "greater", "less"))) {
     stop("'alternative' must be one of 'two.sided', 'greater' or 'less'.")
@@ -136,16 +143,28 @@ ht_2pop_mean <- function(x, y, delta = 0, sd_pop_1 = NULL, sd_pop_2 = NULL, var_
     type = "left"
   }
 
-  ci <- ci_2pop_norm(x, y, sd_pop_1, sd_pop_2, var_equal, na.rm = T, type = type, conf_level = conf_level)
+  if (is.null(conf_level)) {
+    output <- tibble::tibble(
+      statistic = statistic,
+      p_value = p_value,
+      critical_value = critical_value,
+      critical_region = critical_region,
+      delta = delta,
+      alternative = alternative
+    )
+  } else {
+    ci <- ci_2pop_norm(x, y, sd_pop_1, sd_pop_2, var_equal, na.rm = T, type = type, conf_level = conf_level)
+    output <- tibble::tibble(
+      statistic = statistic,
+      p_value = p_value,
+      critical_value = critical_value,
+      critical_region = critical_region,
+      delta = delta,
+      alternative = alternative,
+      lower_ci = ci$lower_ci,
+      upper_ci = ci$upper_ci
+    )
+  }
 
-  tibble::tibble(
-    statistic = statistic,
-    p_value = p_value,
-    critical_value = critical_value,
-    critical_region = critical_region,
-    delta = delta,
-    alternative = alternative,
-    lower_ci = ci$lower_ci,
-    upper_ci = ci$upper_ci
-  )
+  output
 }

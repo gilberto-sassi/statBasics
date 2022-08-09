@@ -21,9 +21,9 @@ ci_2pop_norm(
 
 \item{y}{a (non-empty) numeric vector.}
 
-\item{sd_pop_1}{a number specifying the known standard deviation of the first population.}
+\item{sd_pop_1}{a number specifying the known standard deviation of the first population. Default value is \code{NULL}.}
 
-\item{sd_pop_2}{a number specifying the known standard deviation of the second population.}
+\item{sd_pop_2}{a number specifying the known standard deviation of the second population. Default value is \code{NULL}.}
 
 \item{var_equal}{a logical variable indicating whether to treat the two variances as being equal. If \code{TRUE} then the pooled variance is used to estimate the variance otherwise the Welch (or Satterthwaite) approximation to the degrees of freedom is used.}
 
@@ -49,14 +49,17 @@ according the \code{parameter} argument.
 \examples{
 x <- rnorm(1000, mean = 0, sd = 2)
 y <- rnorm(1000, mean = 0, sd = 1)
-ci_2pop_norm(x, y) # unknown variance and confidence interval for difference of means
+# unknown variance and confidence interval for difference of means
+ci_2pop_norm(x, y)
 
 x <- rnorm(1000, mean = 0, sd = 2)
 y <- rnorm(1000, mean = 0, sd = 3)
-ci_norm(x, y, sd_pop_1 = 2, sd_pop_2 = 3) # known variance and confidence interval for difference of means
+# known variance and confidence interval for difference of means
+ci_2pop_norm(x, y, sd_pop_1 = 2, sd_pop_2 = 3)
 
 x <- rnorm(1000, mean = 0, sd = 2)
 y <- rnorm(1000, mean = 0, sd = 3)
-ci_norm(x, y, parameter = "variance") # confidence interval for the variance ratio of 2 populations
+# confidence interval for the variance ratio of 2 populations
+ci_2pop_norm(x, y, parameter = "variance")
 
 }

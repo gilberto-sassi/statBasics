@@ -3,7 +3,7 @@
 #' Computes the interval for different of 2 proportions from 2 distinct and independent population.
 #'
 #' @param x a (non-empty) numeric vector of 0 and 1 or a non-negative number representing number of successes.
-#' @param x a (non-empty) numeric vector of 0 and 1 or a non-negative number representing number of successes.
+#' @param y a (non-empty) numeric vector of 0 and 1 or a non-negative number representing number of successes.
 #' @param n_x non-negative number of cases.
 #' @param n_y non-negative number of cases.
 #' @param conf_level confidence level of the returned confidence interval. Must be a single number between 0 and 1, usually greater than 90%.

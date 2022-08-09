@@ -1,6 +1,8 @@
 #' Confidence Interval for Proportion
 #'
-#' @param x a vector of counts of successes.
+#' \code{ci_1pop_bern} can be used for obtaining the confidence intervalo for a proportion for a group.
+#'
+#' @param x a vector of counts of sucesses.
 #' @param n a vector of counts of trials.
 #' @param conf_level confidence level of the returned confidence interval. Must be a single number between 0 and 1.
 #' @param type a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "left".

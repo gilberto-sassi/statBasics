@@ -6,7 +6,7 @@
 `R` package of the course **Métodos Estatísticos** at Federal University
 of Bahia.
 
-## Confidence Interval
+## Confidence Interval for one population (or group)
 
 Here, we compute the confidence interval using the methods as presented
 by Montgomery and Runger (2010). All methods implemented are slighted
@@ -22,14 +22,6 @@ in this package.
 
 ``` r
 library(tidyverse)
-#> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-#> ✔ ggplot2 3.3.5     ✔ purrr   0.3.4
-#> ✔ tibble  3.1.7     ✔ dplyr   1.0.8
-#> ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-#> ✔ readr   2.1.2     ✔ forcats 0.5.1
-#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::filter() masks stats::filter()
-#> ✖ dplyr::lag()    masks stats::lag()
 library(statBasics)
 size  <- 1000
 sample <- rbinom(size, 1, prob = 0.5)
@@ -38,7 +30,7 @@ ci_1pop_bern(n_success, size, conf_level = 0.99)
 #> # A tibble: 1 × 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1    0.447    0.529       0.99
+#> 1    0.437    0.519       0.99
 ```
 
 #### Number of success in a vector
@@ -52,7 +44,7 @@ ci_1pop_bern(x, n, conf_level = 0.99)
 #> # A tibble: 1 × 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1    0.550    0.883       0.99
+#> 1    0.584    0.916       0.99
 ```
 
 #### Vector of success
@@ -86,7 +78,7 @@ ci_1pop_norm(x, conf_level = 0.91)
 #> # A tibble: 1 × 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     9.78     10.1       0.91
+#> 1     9.78     10.2       0.91
 ```
 
 #### Standard Deviation is known
@@ -101,7 +93,7 @@ ci_1pop_norm(x, sd_pop = sd_pop, conf_level = 0.91)
 #> # A tibble: 1 × 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     9.55     10.2       0.91
+#> 1     9.76     10.4       0.91
 ```
 
 ### Confidence interval for standard deviation (normal distribution)
@@ -116,7 +108,7 @@ ci_1pop_norm(x, parameter = 'variance', conf_level = 0.91)
 #> # A tibble: 1 × 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     2.99     4.85       0.91
+#> 1     3.37     5.47       0.91
 ```
 
 ### Confidence interval for mean (exponential distribution)
@@ -131,10 +123,10 @@ ci_1pop_exp(x)
 #> # A tibble: 1 × 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     572.     847.       0.95
+#> 1     593.     879.       0.95
 ```
 
-### Confidence interval for mean
+### Confidence interval for mean (general case)
 
 Confidence interval using *t* distribution is suitable, even the
 distribution is not normal, as illustrated in the example bellow.
@@ -148,10 +140,10 @@ ci_1pop_general(x)
 #> # A tibble: 1 × 3
 #>   lower_ci upper_ci conf_level
 #>      <dbl>    <dbl>      <dbl>
-#> 1     49.4     52.1       0.95
+#> 1     48.6     51.0       0.95
 ```
 
-## Hypothesis testing
+## Hypothesis testing for one population (or group)
 
 In the following, we will illustrate the use of this package to test
 scientific hypothesis for one sample with examples. All methods are
@@ -182,7 +174,7 @@ ht_1pop_mean(x, mu = mean_null, conf_level = 0.95, sd_pop = sd_pop, alternative 
 #> # A tibble: 1 × 10
 #>   statistic p_value critical_value critical_region   alternative    mu sig_level
 #>       <dbl>   <dbl>          <dbl> <chr>             <chr>       <dbl>     <dbl>
-#> 1      23.8       0           1.96 (-Inf,-1.960)U(1… two.sided       5      0.05
+#> 1      25.0       0           1.96 (-Inf,-1.960)U(1… two.sided       5      0.05
 #> # … with 3 more variables: lower_ci <dbl>, upper_ci <dbl>, conf_level <dbl>
 ```
 
@@ -194,11 +186,11 @@ library(statBasics)
 mean_null <- 5
 sd_pop <- 2
 x <- rnorm(100, mean = 10, sd = sd_pop)
-ht_1pop_mean(x, mu = mean_null, conf_level = 0.95, sd_pop = sd_pop, alternative = "two.sided")
+ht_1pop_mean(x, mu = mean_null, conf_level = 0.95, alternative = "two.sided")
 #> # A tibble: 1 × 10
 #>   statistic p_value critical_value critical_region   alternative    mu sig_level
 #>       <dbl>   <dbl>          <dbl> <chr>             <chr>       <dbl>     <dbl>
-#> 1      26.6       0           1.96 (-Inf,-1.960)U(1… two.sided       5      0.05
+#> 1      23.8       0           1.98 (-Inf,-1.984)U(1… two.sided       5      0.05
 #> # … with 3 more variables: lower_ci <dbl>, upper_ci <dbl>, conf_level <dbl>
 ```
 
@@ -224,8 +216,8 @@ ht_1pop_var(x, sigma = sigma_null, conf_level = 0.95, alternative = "two.sided")
 #> # A tibble: 2 × 10
 #>   statistic  p_value critical_value critical_region  alternative sigma sig_level
 #>       <dbl>    <dbl>          <dbl> <chr>            <chr>       <dbl>     <dbl>
-#> 1      23.8 6.66e-16           73.4 (0,73.361)U(128… two.sided       4      0.05
-#> 2      23.8 6.66e-16          128.  (0,73.361)U(128… two.sided       4      0.05
+#> 1      22.0 3.55e-17           73.4 (0,73.361)U(128… two.sided       4      0.05
+#> 2      22.0 3.55e-17          128.  (0,73.361)U(128… two.sided       4      0.05
 #> # … with 3 more variables: lower_ci <dbl>, upper_ci <dbl>, conf_level <dbl>
 ```
 
@@ -255,7 +247,7 @@ ht_1pop_prop(x, 1000, proportion = p0, alternative = "two.sided", conf_level = 0
 #> # A tibble: 1 × 10
 #>   statistic p_value critical_value critical_region        alternative proportion
 #>       <dbl>   <dbl>          <dbl> <chr>                  <chr>            <dbl>
-#> 1     0.511   0.609           1.96 (-Inf,-1.960)U(1.960,… two.sided         0.75
+#> 1     0.219   0.827           1.96 (-Inf,-1.960)U(1.960,… two.sided         0.75
 #> # … with 4 more variables: sig_level <dbl>, lower_ci <dbl>, upper_ci <dbl>,
 #> #   conf_level <dbl>
 ```
@@ -276,7 +268,7 @@ ht_1pop_prop(x, n, proportion = p0, alternative = "less", conf_level = 0.99)
 #> # A tibble: 1 × 10
 #>   statistic p_value critical_value critical_region alternative proportion
 #>       <dbl>   <dbl>          <dbl> <chr>           <chr>            <dbl>
-#> 1    -0.894   0.186          -1.64 (-Inf,-1.645)   less              0.75
+#> 1     0.894   0.814          -1.64 (-Inf,-1.645)   less              0.75
 #> # … with 4 more variables: sig_level <dbl>, lower_ci <dbl>, upper_ci <dbl>,
 #> #   conf_level <dbl>
 ```
@@ -295,7 +287,207 @@ ht_1pop_prop(x, proportion = p0, alternative = "greater", conf_level = 0.95)
 #> # A tibble: 1 × 10
 #>   statistic p_value critical_value critical_region alternative proportion
 #>       <dbl>   <dbl>          <dbl> <chr>           <chr>            <dbl>
-#> 1   -0.0730   0.529           1.64 (1.645, Inf)    greater           0.75
+#> 1     0.657   0.256           1.64 (1.645, Inf)    greater           0.75
 #> # … with 4 more variables: sig_level <dbl>, lower_ci <dbl>, upper_ci <dbl>,
 #> #   conf_level <dbl>
+```
+
+## Confidence Interval for two population (or two group)
+
+### Bernoulli distribution
+
+There are two approaches to compute confidence interval for difference
+of proportions in this package.
+
+#### Confidence Interval – Number of success
+
+In this case, we have the number of trials (`n_x` and `n_y`) and the
+number of success (`x` and `y`) for both popuations or groups.
+
+``` r
+x <- 3
+n_x <- 100
+y <- 50
+n_y <- 333
+ci_2pop_bern(x, y, n_x, n_y)
+#> # A tibble: 1 × 3
+#>   lower_ci upper_ci conf_level
+#>      <dbl>    <dbl>      <dbl>
+#> 1   -0.232 -0.00840       0.95
+```
+
+#### Confidence Interval – vectors of 0 and 1
+
+In this case, we have a vector of 0 and 1 (`x` and `y`) for both
+populations or groups.
+
+``` r
+x <- rbinom(100, 1, 0.75)
+y <- rbinom(500, 1, 0.75)
+ci_2pop_bern(x, y)
+#> # A tibble: 1 × 3
+#>   lower_ci upper_ci conf_level
+#>      <dbl>    <dbl>      <dbl>
+#> 1  -0.0954    0.119       0.95
+```
+
+### Normal distribution
+
+In this case, we can build the interval of the difference of means of
+two populations (or groups) for known and unknown variances, and we can
+build the ration of the variances of two populations (or groups).
+
+#### Confidence Interval – comparing the mean and the unknown variances
+
+In this case, we can build the difference of means of two populations
+(or groups) when we do not know the variances.
+
+``` r
+x <- rnorm(1000, mean = 0, sd = 2)
+y <- rnorm(1000, mean = 0, sd = 1)
+# unknown variance and confidence interval for difference of means
+ci_2pop_norm(x, y)
+#> # A tibble: 1 × 3
+#>   lower_ci upper_ci conf_level
+#>      <dbl>    <dbl>      <dbl>
+#> 1  -0.0401    0.233       0.95
+```
+
+#### Confidence Interval – comparing the mean and the unknown variances
+
+In this case, we can build the difference of means of two populations
+(or groups) for known variances.
+
+``` r
+x <- rnorm(1000, mean = 0, sd = 2)
+y <- rnorm(1000, mean = 0, sd = 3)
+# known variance and confidence interval for difference of means
+ci_2pop_norm(x, y, sd_pop_1 = 2, sd_pop_2 = 3)
+#> # A tibble: 1 × 3
+#>   lower_ci upper_ci conf_level
+#>      <dbl>    <dbl>      <dbl>
+#> 1   -0.184    0.263       0.95
+```
+
+#### Confidence Interval – comparing the variances
+
+In this case, we can build the ration of variances of two populations
+(or groups).
+
+``` r
+x <- rnorm(1000, mean = 0, sd = 2)
+y <- rnorm(1000, mean = 0, sd = 3)
+# confidence interval for the variance ratio of 2 populations
+ci_2pop_norm(x, y, parameter = "variance")
+#> # A tibble: 1 × 3
+#>   lower_ci upper_ci conf_level
+#>      <dbl>    <dbl>      <dbl>
+#> 1    0.399    0.511       0.95
+```
+
+## Hypothesis Testing for two population (or two group)
+
+### Comparing proportions of two populations (or groups)
+
+There two approaches to compare the proportions of two populations (or
+groups):
+
+-   We have the numbers of sucecss (`x` and `y`) and the numbers of
+    trials (`n_x` and `n_y`) for both populations (or groups);
+-   We have vector of 1 (success) and 0 (failure) for both populations
+    (or groups).
+
+#### Vector of 1 and 0
+
+In this case, we have a vector of 1 (success) and 0 (failure) for both
+populations (or groups).
+
+``` r
+x <- rbinom(100, 1, 0.75)
+y <- rbinom(500, 1, 0.75)
+ht_2pop_prop(x, y)
+#> [1] FALSE
+#> # A tibble: 1 × 6
+#>   statistic p_value critical_value critical_region           delta alternative
+#>       <dbl>   <dbl>          <dbl> <chr>                     <dbl> <chr>      
+#> 1     0.436   0.663           1.96 (-Inf,-1.960)U(1.960,Inf)     0 two.sided
+```
+
+#### Number of success
+
+In this case, we have the number of success and the number of trials for
+both populations (or groups).
+
+``` r
+x <- 3
+n_x <- 100
+y <- 50
+n_y <- 333
+ht_2pop_prop(x, y, n_x, n_y)
+#> [1] FALSE
+#> # A tibble: 1 × 6
+#>   statistic p_value critical_value critical_region           delta alternative
+#>       <dbl>   <dbl>          <dbl> <chr>                     <dbl> <chr>      
+#> 1     -3.21 0.00131           1.96 (-Inf,-1.960)U(1.960,Inf)     0 two.sided
+```
+
+## Hypothesis Testing to compare mean of two populations (or groups)
+
+There are three cases when comparing means of two populations:
+
+1.  `t-test` when variances are unknown where the variances are equals;
+2.  `t-test` when variances are unknown where the variances are
+    differents;
+3.  `z-test` when the variances are known.
+
+### Comparing the means – variances unknown and differents (`t-test`)
+
+``` r
+x <- rnorm(1000, mean = 10, sd = 2)
+y <- rnorm(500, mean = 5, sd = 1)
+# H0: mu_1 - mu_2 == -1 versus H1: mu_1 - mu_2 != -1
+ht_2pop_mean(x, y, delta = -1)
+#> # A tibble: 1 × 6
+#>   statistic p_value critical_value critical_region            delta alternative
+#>       <dbl>   <dbl>          <dbl> <chr>                      <dbl> <chr>      
+#> 1      78.7       0           1.96 (-Inf,-1.962)U(1.962, Inf)    -1 two.sided
+```
+
+### Comparing the means – variances unknown and equal (`t-test`)
+
+``` r
+x <- rnorm(1000, mean = 10, sd = 2)
+y <- rnorm(500, mean = 5, sd = 2)
+# H0: mu_1 - mu_2 == -1 versus H1: mu_1 - mu_2 != -1
+ht_2pop_mean(x, y, delta = -1, var_equal = TRUE)
+#> # A tibble: 1 × 6
+#>   statistic p_value critical_value critical_region            delta alternative
+#>       <dbl>   <dbl>          <dbl> <chr>                      <dbl> <chr>      
+#> 1      54.5       0           1.96 (-Inf,-1.962)U(1.962, Inf)    -1 two.sided
+```
+
+### Comparing the means – variances known (`z-test`)
+
+``` r
+x <- rnorm(1000, mean = 10, sd = 3)
+x <- rnorm(500, mean = 5, sd = 1)
+# H0: mu_1 - mu_2 >= 0 versus H1: mu_1 - mu_2 < 0
+ht_2pop_mean(x, y, delta = 0, sd_pop_1 = 3, sd_pop_2 = 1, alternative = "less")
+#> # A tibble: 1 × 6
+#>   statistic p_value critical_value critical_region delta alternative
+#>       <dbl>   <dbl>          <dbl> <chr>           <dbl> <chr>      
+#> 1     -1.32  0.0929          -1.64 (-Inf, -1.645)      0 less
+```
+
+## Hypothesis Testing to compare variances of two populations (or groups)
+
+``` r
+x <- rnorm(100, sd = 2)
+y <- rnorm(1000, sd = 10)
+ht_2pop_var(x, y)
+#> # A tibble: 2 × 7
+#>   statistic  p_value critical_vale ratio alternative lower_ci upper_ci
+#>       <dbl>    <dbl>         <dbl> <dbl> <chr>          <dbl>    <dbl>
+#> 1    0.0362 2.36e-51         0.733     1 two.sided     0.0364   0.0364
+#> 2    0.0362 2.36e-51         1.32      1 two.sided     0.0364   0.0364
 ```

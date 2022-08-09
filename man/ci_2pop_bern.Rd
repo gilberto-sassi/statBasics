@@ -17,6 +17,8 @@ ci_2pop_bern(
 \arguments{
 \item{x}{a (non-empty) numeric vector of 0 and 1 or a non-negative number representing number of successes.}
 
+\item{y}{a (non-empty) numeric vector of 0 and 1 or a non-negative number representing number of successes.}
+
 \item{n_x}{non-negative number of cases.}
 
 \item{n_y}{non-negative number of cases.}

@@ -7,7 +7,7 @@
 ci_1pop_bern(x, n = NULL, conf_level = 0.95, type = "two.sided", na.rm = F)
 }
 \arguments{
-\item{x}{a vector of counts of successes.}
+\item{x}{a vector of counts of sucesses.}
 
 \item{n}{a vector of counts of trials.}
 
@@ -21,7 +21,7 @@ ci_1pop_bern(x, n = NULL, conf_level = 0.95, type = "two.sided", na.rm = F)
 A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectively.
 }
 \description{
-Confidence Interval for Proportion
+\code{ci_1pop_bern} can be used for obtaining the confidence intervalo for a proportion for a group.
 }
 \details{
 \code{type} specifies the type of confidence interval. If \code{type} is "two.sided",  the returned confidence interval is \code{(lower_ci, upper_ci)}. If \code{type} is "left", the returned confidence interval is \code{(lower_ci, 1)}. And, finally, is \code{type} is "right", the returned confidence interval is \code{(0, upper_ci))}.

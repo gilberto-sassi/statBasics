@@ -23,15 +23,18 @@
 #' @examples
 #' x <- rnorm(1000, mean = 0, sd = 2)
 #' y <- rnorm(1000, mean = 0, sd = 1)
-#' ci_2pop_norm(x, y) # unknown variance and confidence interval for difference of means
+#' # unknown variance and confidence interval for difference of means
+#' ci_2pop_norm(x, y)
 #'
 #' x <- rnorm(1000, mean = 0, sd = 2)
 #' y <- rnorm(1000, mean = 0, sd = 3)
-#' ci_norm(x, y, sd_pop_1 = 2, sd_pop_2 = 3) # known variance and confidence interval for difference of means
+#' # known variance and confidence interval for difference of means
+#' ci_2pop_norm(x, y, sd_pop_1 = 2, sd_pop_2 = 3)
 #'
 #' x <- rnorm(1000, mean = 0, sd = 2)
 #' y <- rnorm(1000, mean = 0, sd = 3)
-#' ci_norm(x, y, parameter = "variance") # confidence interval for the variance ratio of 2 populations
+#' # confidence interval for the variance ratio of 2 populations
+#' ci_2pop_norm(x, y, parameter = "variance")
 #'
 #' @export
 ci_2pop_norm <- function(x, y, sd_pop_1 = NULL, sd_pop_2 = NULL, var_equal = FALSE, parameter = "mean", conf_level= 0.95, type = "two.sided", na.rm = F) {
@@ -116,13 +119,13 @@ ci_2pop_norm <- function(x, y, sd_pop_1 = NULL, sd_pop_2 = NULL, var_equal = FAL
   if (parameter == "variance") {
     if (type == "left") {
       lower_ci <-  0
-      upper_ci  <- qf(conf_level, df1 = size_y - 1, df = size_x - 1) * var(x) / var(y)
+      upper_ci  <- qf(conf_level, df1 = size_y - 1, df2 = size_x - 1) * var(x) / var(y)
     } else if (type == "right") {
-      lower_ci <- qf(1 - conf_level, df1 = size_y - 1, df = size_x - 1) * var(x) / var(y)
+      lower_ci <- qf(1 - conf_level, df1 = size_y - 1, df2 = size_x - 1) * var(x) / var(y)
       upper_ci <- Inf
     } else {
-      lower_ci <- qf((1 - conf_level) / 2, df1 = size_y - 1, df = size_x - 1) * var(x) / var(y)
-      upper_ci <- qf((1 + conf_level) / 2, df1 = size_y - 1, df = size_x - 1) * var(x) / var(y)
+      lower_ci <- qf((1 - conf_level) / 2, df1 = size_y - 1, df2 = size_x - 1) * var(x) / var(y)
+      upper_ci <- qf((1 + conf_level) / 2, df1 = size_y - 1, df2 = size_x - 1) * var(x) / var(y)
     }
   }
 
