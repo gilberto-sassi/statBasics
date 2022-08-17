@@ -12,7 +12,6 @@
 #'
 #' @import stats stringr tibble
 #'
-#' @details I have wrapped the book of Millard and Neerchal (2001) <ISBN: 978-0-367-39814-9>.
 #'
 #' @return a \code{tibble} with the following columns:
 #' \describe{
