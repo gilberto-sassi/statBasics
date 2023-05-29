@@ -1,31 +1,32 @@
-#' Hypothesis testing mean for two samples
+#' Hypothesis testing mean for two populations
 #'
-#' Performs a hypothesis testing for mean difference of two samples.
+#' Performs a hypothesis testing for the difference in means of two populations.
 #'
 #' @param x a (non-empty) numeric vector.
 #' @param y a (non-empty) numeric vector.
 #' @param delta a scalar value indicating the difference in means (\eqn{\Delta_0}). Default value is 0.
 #' @param sd_pop_1 a number specifying the known standard deviation of the first population. Default value is \code{NULL}.
 #' @param sd_pop_2 a number specifying the known standard deviation of the second population. Default value is \code{NULL}.
-#' @param var_equal a logical variable indicating whether to treat the two variances as being equal. If \code{TRUE} then the pooled variance is used to estimate the variance otherwise the Welch (or Satterthwaite) approximation to the degrees of freedom is used. Default value is \code{FALSE}.
+#' @param var_equal a logical variable indicating whether to treat the two variances as being equal. If \code{TRUE} then the pooled variance is used to estimate the variance, otherwise the Welch (or Satterthwaite) approximation to the degrees of freedom is used. Default value is \code{FALSE}.
 #' @param alternative a character string specifying the alternative hypothesis, must be one of ‘"two.sided"’ (default), ‘"greater"’ or ‘"less"’.
 #' @param conf_level a number indicating the confidence level to compute the confidence interval. If \code{conf_level = NULL}, then confidence interval is not included in the output. Default value is \code{NULL}.
 #' @param sig_level a number indicating the significance level to use in the General Procedure for Hypothesis Testing.
-#' @param na_rm a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.
+#' @param na_rm a logical value indicating whether \code{NA} values should be removed before the computation proceeds.
 #'
 #' @import stats stringr tibble
-#' @details I have wrapped the \code{t.test} and the \code{BSDA::z.test} in a function as explained in the book of Montgomery and Runger (2010) <ISBN: 978-1-119-74635-5>.
+#'
+#' @details We have wrapped the \code{t.test} and the \code{BSDA::z.test} in a function as explained in the book of Montgomery and Runger (2010) <ISBN: 978-1-119-74635-5>.
 #'
 #' @return a \code{tibble} with the following columns:
 #' \describe{
-#' \item{statistic}{the value of statistic.}
+#' \item{statistic}{the value of the test statistic.}
 #' \item{p_value}{the p-value for the test.}
 #' \item{critical_value}{critical value in the General Procedure for Hypothesis Testing.}
 #' \item{critical_region}{critical region in the General Procedure for Hypothesis Testing.}
 #' \item{delta}{a scalar value indicating the value of \eqn{\Delta_0}.}
 #' \item{alternative}{character string giving the direction of the alternative hypothesis.}
-#' \item{lower_ci}{lower bound of the confidence interval. Is is present only if \code{!is.null(conf_level)}.}
-#' \item{upper_ci}{upper bound of the confidence interval. Is is present only if \code{!is.null(conf_level)}.}
+#' \item{lower_ci}{lower bound of the confidence interval. It is presented only if \code{!is.null(conf_level)}.}
+#' \item{upper_ci}{upper bound of the confidence interval. It is presented only if \code{!is.null(conf_level)}.}
 #' }
 #'
 #' @export
@@ -96,7 +97,7 @@ ht_2pop_mean <- function(x, y, delta = 0, sd_pop_1 = NULL, sd_pop_2 = NULL, var_
     }
   }
 
-# unknown and equal variances  --------------------------------------------
+# unknown equal variances  --------------------------------------------
   if (is.null(sd_pop_1) && is.null(sd_pop_2) && (var_equal == T)) {
     s_d <- ((n_x - 1) * sd(x)^2 + (n_y - 1) * sd(y)^2) / (n_x + n_y - 2)
     statistic <- (mean(x) - mean(y) - delta) / sqrt(s_d * (1 / n_x + 1 / n_y))
@@ -116,7 +117,7 @@ ht_2pop_mean <- function(x, y, delta = 0, sd_pop_1 = NULL, sd_pop_2 = NULL, var_
     }
   }
 
-# unknown and different variances -----------------------------------------
+# unknown unequal variances -----------------------------------------
   if (is.null(sd_pop_1) && is.null(sd_pop_2) && (var_equal == F)) {
     statistic <- (mean(x) - mean(y) - delta) / sqrt(var(x) / n_x + var(y) / n_y)
     gl <- (var(x) / n_x + var(y) / n_y)^2 / ((var(x) / n_x)^2 / (n_x - 1) + (var(y) / n_y)^2 / (n_y - 1))

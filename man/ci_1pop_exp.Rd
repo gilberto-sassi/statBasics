@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_1pop_exp.R
 \name{ci_1pop_exp}
 \alias{ci_1pop_exp}
-\title{Confidence Interval of Exponential Distribution}
+\title{Confidence interval for a population mean (exponential distribution)}
 \usage{
 ci_1pop_exp(x, conf_level = 0.95, type = "two.sided", na.rm = F)
 }
@@ -11,15 +11,15 @@ ci_1pop_exp(x, conf_level = 0.95, type = "two.sided", na.rm = F)
 
 \item{conf_level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
 
-\item{type}{a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "less".}
+\item{type}{a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "left".}
 
-\item{na.rm}{a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.}
+\item{na.rm}{a logical value indicating whether \code{NA} values should be removed before the computation proceeds.}
 }
 \value{
-A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectively.
+A 1 x 3 tibble with 'lower_ci', 'upper_ci', and 'conf_level' columns. Values correspond to the lower and upper bounds of the confidence interval, and the confidence level, respectively.
 }
 \description{
-Confidence Interval of Exponential Distribution
+Confidence interval for a population mean (exponential distribution)
 }
 \details{
 "lower_ci" and "upper_ci" are computed using pivotal quantity, as explained by Montgomery and Runger <<ISBN: 978-1-119-74635-5>.

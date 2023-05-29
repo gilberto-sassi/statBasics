@@ -1,30 +1,33 @@
-#' Test of Equal or Given of Two Proportions
+#' Hypothesis testing for two population porportions
+#' 
+#' Comparing proportions in two populations
 #'
 #' \code{ht_2pop_prop} can be used for testing the null hipothesis that proportions (probabilities of success) in two groups are the same.
 #'
 #' @param x a vector of 0 and 1, or a scalar of count of sucesses in the first group.
 #' @param y a vector of 0 and 1, or a scalar of count of sucesses in the first group.
-#' @param n_x a scalar of trial number in the first group.
-#' @param n_y a scalar of trial number in the second group.
+#' @param n_x a scalar of number of trials in the first group.
+#' @param n_y a scalar of number of trials in the second group.
 #' @param delta a scalar value indicating the difference in proportions (\eqn{\Delta_0}). Default value is 0.
 #' @param alternative a character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less".
-#' @param conf_level a number indicating the confidence level to compute the confidence interval. If \code{conf_level = NULL}, then confidence interval is not included in the output. Default value is \code{NULL}.
+#' @param conf_level a number indicating the confidence level to compute the confidence interval. If \code{conf_level = NULL}, then the confidence interval is not included in the output. Default value is \code{NULL}.
 #' @param sig_level a number indicating the significance level to use in the General Procedure for Hypothesis Testing.
-#' @param na_rm a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds. Default value is \code{FALSE}.
+#' @param na_rm a logical value indicating whether \code{NA} values should be removed before the computation proceeds. Default value is \code{FALSE}.
 #'
 #' @import stats stringr tibble
 #'
-#'@details If \code{is.null(n_x) == T} and \code{is.null(n_y) == T}, then \code{x} and \code{y} must be a numeric value of 0 and 1 and the proportions are computed using \code{x} and \code{y}. If \code{is.null(n_x) == F} and \code{is.null(n_y) == F}, then  \code{x}, \code{y}, \code{n_x} and \code{n_y} must be non-negative integer scalar and \code{x <= n_x} and \code{y <= n_y}.
+#'@details If \code{is.null(n_x) == T} and \code{is.null(n_y) == T}, then \code{x} and \code{y} must be a numeric value of 0 and 1 and the proportions are computed using \code{x} and \code{y}. If \code{is.null(n_x) == F} and \code{is.null(n_y) == F}, then  \code{x}, \code{y}, \code{n_x} and \code{n_y} must be non-negative integer scalars and \code{x <= n_x} and \code{y <= n_y}.
+#'
 #' @return a \code{tibble} with the following columns:
 #' \describe{
-#' \item{statistic}{the value of statistic.}
+#' \item{statistic}{the value of the test statistic.}
 #' \item{p_value}{the p-value for the test.}
 #' \item{critical_value}{critical value in the General Procedure for Hypothesis Testing.}
 #' \item{critical_region}{critical region in the General Procedure for Hypothesis Testing.}
 #' \item{delta}{a scalar value indicating the value of \code{delta}.}
 #' \item{alternative}{character string giving the direction of the alternative hypothesis.}
-#' \item{lower_ci}{lower bound of the confidence interval. Is is present only if \code{!is.null(conf_level)}.}
-#' \item{upper_ci}{upper bound of the confidence interval. Is is present only if \code{!is.null(conf_level)}.}
+#' \item{lower_ci}{lower bound of the confidence interval. It is presented only if \code{!is.null(conf_level)}.}
+#' \item{upper_ci}{upper bound of the confidence interval. It is presented only if \code{!is.null(conf_level)}.}
 #' }
 #'
 #' @export
@@ -65,11 +68,11 @@ ht_2pop_prop <- function(x, y, n_x = NULL, n_y = NULL, delta = 0, alternative = 
 
   if (!is.null(n_x) && !is.null(n_y)) {
     if (length(x) != 1 || length(y) != 1 || length(n_x) != 1 || length(n_y) != 1) {
-      stop("If 'n_x' and 'n_y' are not NULL, then 'x', 'y', 'n_x' and 'n_y' must be all  nonnegative scalar values.")
+      stop("If 'n_x' and 'n_y' are not NULL, then 'x', 'y', 'n_x' and 'n_y' must be all nonnegative scalar values.")
     }
 
     if (is.na(x) || is.na(y) || is.na(n_x) || is.na(n_y)) {
-      stop("If 'n_x' and 'n_y' are not NULL, then 'x', 'y', 'n_x' and 'n_y' must be all  non missing  values.")
+      stop("If 'n_x' and 'n_y' are not NULL, then 'x', 'y', 'n_x' and 'n_y' must be all non missing  values.")
     }
 
     if (x > n_x) {

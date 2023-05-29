@@ -2,7 +2,7 @@
 % Please edit documentation in R/ht_2pop_mean.R
 \name{ht_2pop_mean}
 \alias{ht_2pop_mean}
-\title{Hypothesis testing mean for two samples}
+\title{Hypothesis testing mean for two populations}
 \usage{
 ht_2pop_mean(
   x,
@@ -28,7 +28,7 @@ ht_2pop_mean(
 
 \item{sd_pop_2}{a number specifying the known standard deviation of the second population. Default value is \code{NULL}.}
 
-\item{var_equal}{a logical variable indicating whether to treat the two variances as being equal. If \code{TRUE} then the pooled variance is used to estimate the variance otherwise the Welch (or Satterthwaite) approximation to the degrees of freedom is used. Default value is \code{FALSE}.}
+\item{var_equal}{a logical variable indicating whether to treat the two variances as being equal. If \code{TRUE} then the pooled variance is used to estimate the variance, otherwise the Welch (or Satterthwaite) approximation to the degrees of freedom is used. Default value is \code{FALSE}.}
 
 \item{alternative}{a character string specifying the alternative hypothesis, must be one of ‘"two.sided"’ (default), ‘"greater"’ or ‘"less"’.}
 
@@ -36,26 +36,26 @@ ht_2pop_mean(
 
 \item{sig_level}{a number indicating the significance level to use in the General Procedure for Hypothesis Testing.}
 
-\item{na_rm}{a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.}
+\item{na_rm}{a logical value indicating whether \code{NA} values should be removed before the computation proceeds.}
 }
 \value{
 a \code{tibble} with the following columns:
 \describe{
-\item{statistic}{the value of statistic.}
+\item{statistic}{the value of the test statistic.}
 \item{p_value}{the p-value for the test.}
 \item{critical_value}{critical value in the General Procedure for Hypothesis Testing.}
 \item{critical_region}{critical region in the General Procedure for Hypothesis Testing.}
 \item{delta}{a scalar value indicating the value of \eqn{\Delta_0}.}
 \item{alternative}{character string giving the direction of the alternative hypothesis.}
-\item{lower_ci}{lower bound of the confidence interval. Is is present only if \code{!is.null(conf_level)}.}
-\item{upper_ci}{upper bound of the confidence interval. Is is present only if \code{!is.null(conf_level)}.}
+\item{lower_ci}{lower bound of the confidence interval. It is presented only if \code{!is.null(conf_level)}.}
+\item{upper_ci}{upper bound of the confidence interval. It is presented only if \code{!is.null(conf_level)}.}
 }
 }
 \description{
-Performs a hypothesis testing for mean difference of two samples.
+Performs a hypothesis testing for the difference in means of two populations.
 }
 \details{
-I have wrapped the \code{t.test} and the \code{BSDA::z.test} in a function as explained in the book of Montgomery and Runger (2010) <ISBN: 978-1-119-74635-5>.
+We have wrapped the \code{t.test} and the \code{BSDA::z.test} in a function as explained in the book of Montgomery and Runger (2010) <ISBN: 978-1-119-74635-5>.
 }
 \examples{
 # t-test: var_equal == FALSE

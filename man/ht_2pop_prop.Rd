@@ -2,7 +2,7 @@
 % Please edit documentation in R/ht_2pop_prop.R
 \name{ht_2pop_prop}
 \alias{ht_2pop_prop}
-\title{Test of Equal or Given of Two Proportions}
+\title{Hypothesis testing for two population porportions}
 \usage{
 ht_2pop_prop(
   x,
@@ -21,38 +21,40 @@ ht_2pop_prop(
 
 \item{y}{a vector of 0 and 1, or a scalar of count of sucesses in the first group.}
 
-\item{n_x}{a scalar of trial number in the first group.}
+\item{n_x}{a scalar of number of trials in the first group.}
 
-\item{n_y}{a scalar of trial number in the second group.}
+\item{n_y}{a scalar of number of trials in the second group.}
 
 \item{delta}{a scalar value indicating the difference in proportions (\eqn{\Delta_0}). Default value is 0.}
 
 \item{alternative}{a character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less".}
 
-\item{conf_level}{a number indicating the confidence level to compute the confidence interval. If \code{conf_level = NULL}, then confidence interval is not included in the output. Default value is \code{NULL}.}
+\item{conf_level}{a number indicating the confidence level to compute the confidence interval. If \code{conf_level = NULL}, then the confidence interval is not included in the output. Default value is \code{NULL}.}
 
 \item{sig_level}{a number indicating the significance level to use in the General Procedure for Hypothesis Testing.}
 
-\item{na_rm}{a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds. Default value is \code{FALSE}.}
+\item{na_rm}{a logical value indicating whether \code{NA} values should be removed before the computation proceeds. Default value is \code{FALSE}.}
 }
 \value{
 a \code{tibble} with the following columns:
 \describe{
-\item{statistic}{the value of statistic.}
+\item{statistic}{the value of the test statistic.}
 \item{p_value}{the p-value for the test.}
 \item{critical_value}{critical value in the General Procedure for Hypothesis Testing.}
 \item{critical_region}{critical region in the General Procedure for Hypothesis Testing.}
 \item{delta}{a scalar value indicating the value of \code{delta}.}
 \item{alternative}{character string giving the direction of the alternative hypothesis.}
-\item{lower_ci}{lower bound of the confidence interval. Is is present only if \code{!is.null(conf_level)}.}
-\item{upper_ci}{upper bound of the confidence interval. Is is present only if \code{!is.null(conf_level)}.}
+\item{lower_ci}{lower bound of the confidence interval. It is presented only if \code{!is.null(conf_level)}.}
+\item{upper_ci}{upper bound of the confidence interval. It is presented only if \code{!is.null(conf_level)}.}
 }
 }
 \description{
-\code{ht_2pop_prop} can be used for testing the null hipothesis that proportions (probabilities of success) in two groups are the same.
+Comparing proportions in two populations
 }
 \details{
-If \code{is.null(n_x) == T} and \code{is.null(n_y) == T}, then \code{x} and \code{y} must be a numeric value of 0 and 1 and the proportions are computed using \code{x} and \code{y}. If \code{is.null(n_x) == F} and \code{is.null(n_y) == F}, then  \code{x}, \code{y}, \code{n_x} and \code{n_y} must be non-negative integer scalar and \code{x <= n_x} and \code{y <= n_y}.
+\code{ht_2pop_prop} can be used for testing the null hipothesis that proportions (probabilities of success) in two groups are the same.
+
+If \code{is.null(n_x) == T} and \code{is.null(n_y) == T}, then \code{x} and \code{y} must be a numeric value of 0 and 1 and the proportions are computed using \code{x} and \code{y}. If \code{is.null(n_x) == F} and \code{is.null(n_y) == F}, then  \code{x}, \code{y}, \code{n_x} and \code{n_y} must be non-negative integer scalars and \code{x <= n_x} and \code{y <= n_y}.
 }
 \examples{
 x <- 3

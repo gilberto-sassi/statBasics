@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_2pop_bern.R
 \name{ci_2pop_bern}
 \alias{ci_2pop_bern}
-\title{Confidence interval for proportion difference - 2 populations}
+\title{Confidence interval for the difference in two population proportions}
 \usage{
 ci_2pop_bern(
   x,
@@ -23,17 +23,17 @@ ci_2pop_bern(
 
 \item{n_y}{non-negative number of cases.}
 
-\item{conf_level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1, usually greater than 90\%.}
+\item{conf_level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
 
-\item{type}{a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "less".}
+\item{type}{a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "left".}
 
-\item{na.rm}{a logical value indicating whether \code{NA} values should be stripped before the computation proceeds.}
+\item{na.rm}{a logical value indicating whether \code{NA} values should be removed before the computation proceeds.}
 }
 \value{
-A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectivel.
+A 1 x 3 tibble with 'lower_ci', 'upper_ci', and 'conf_level' columns. Values correspond to the lower and upper bounds of the confidence interval, and to the confidence level, respectively.
 }
 \description{
-Computes the interval for different of 2 proportions from 2 distinct and independent population.
+Computes the interval for different in two proportions from two distinct and independent population.
 }
 \details{
 \code{type} specifies the type of confidence interval. If \code{type} is "two.sided",  the returned confidence interval is \code{(lower_ci, upper_ci)}. If \code{type} is "left", the returned confidence interval is \code{(lower_ci, Inf)}. And, finally, is \code{type} is "right", the returned confidence interval is \code{(-Inf, upper_ci))}.

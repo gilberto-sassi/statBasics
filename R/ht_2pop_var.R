@@ -1,4 +1,4 @@
-#' F Test to Compare two Variances
+#' F Test to compare two variances
 #'
 #' Performs a F test to compare the variances of two normal populations.
 #'
@@ -6,23 +6,24 @@
 #' @param y a (non-empty) numeric vector.
 #' @param ratio the hypothesized ratio of the population variances of \code{x} and \code{y}. Default value is 1.
 #' @param alternative a character string specifying the alternative hypothesis, must be one of "two.sided" (default), "greater" or "less".
-#' @param conf_level a number indicating the confidence level to compute the confidence interval. If \code{conf_level = NULL}, then confidence interval is not included in the output. Default value is \code{NULL}.
+#' @param conf_level a number indicating the confidence level to compute the confidence interval. If \code{conf_level = NULL}, then the confidence interval is not included in the output. Default value is \code{NULL}.
 #' @param sig_level a number indicating the significance level to use in the General Procedure for Hypothesis Testing.
-#' @param na_rm a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds. Default value is \code{FALSE}.
+#' @param na_rm a logical value indicating whether \code{NA} values should be removed before the computation proceeds. Default value is \code{FALSE}.
 #'
 #' @import stats stringr tibble
-#' @details I have wrapped the \code{var.test} in a function as explained in the book of Montgomery and Runger (2010) <ISBN: 978-1-119-74635-5>.
+#'
+#' @details We have wrapped the \code{var.test} in a function as explained in the book of Montgomery and Runger (2010) <ISBN: 978-1-119-74635-5>.
 #'
 #' @return a \code{tibble} with the following columns:
 #' \describe{
-#' \item{statistic}{the value of statistic.}
+#' \item{statistic}{the value of the test statistic.}
 #' \item{p_value}{the p-value for the test.}
 #' \item{critical_value}{critical value in the General Procedure for Hypothesis Testing.}
 #' \item{critical_region}{critical region in the General Procedure for Hypothesis Testing.}
 #' \item{ratio}{a scalar value indicating the value of \code{ratio}.}
 #' \item{alternative}{character string giving the direction of the alternative hypothesis.}
-#' \item{lower_ci}{lower bound of the confidence interval. Is is present only if \code{!is.null(conf_level)}.}
-#' \item{upper_ci}{upper bound of the confidence interval. Is is present only if \code{!is.null(conf_level)}.}
+#' \item{lower_ci}{lower bound of the confidence interval. It is presented only if \code{!is.null(conf_level)}.}
+#' \item{upper_ci}{upper bound of the confidence interval. It is presented only if \code{!is.null(conf_level)}.}
 #' }
 #'
 #' @export

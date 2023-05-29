@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_1pop_norm.R
 \name{ci_1pop_norm}
 \alias{ci_1pop_norm}
-\title{Confidence Interval for Normal Distribution}
+\title{Confidence interval for the normal distribution parameters}
 \usage{
 ci_1pop_norm(
   x,
@@ -22,27 +22,27 @@ ci_1pop_norm(
 
 \item{conf_level}{confidence level of the returned confidence interval. Must be a single number between 0 and 1.}
 
-\item{type}{a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "less".}
+\item{type}{a character string specifying the type of confidence interval. Must be one of "two.sided" (default), "right" or "left".}
 
-\item{na.rm}{a logical value indicating whether ‘NA’ values should be stripped before the computation proceeds.}
+\item{na.rm}{a logical value indicating whether \code{NA} values should be removed before the computation proceeds.}
 }
 \value{
-A 1 x 3 tibble with 'lower_ci', 'upper_ci' and 'conf_level' columns. Values correspond to lower, upper bounds of the confidence interval and confidence level, respectivel.
+A 1 x 3 tibble with 'lower_ci', 'upper_ci', and 'conf_level' columns. Values correspond to the lower and upper bounds of the confidence interval, and the confidence level, respectivel.
 }
 \description{
-Confidence Interval for Normal Distribution
+Confidence interval for the normal distribution parameters
 }
 \details{
 \code{type} specifies the type of confidence interval. If \code{type} is "two.sided",  the returned confidence interval is \code{(lower_ci, upper_ci)} when \code{parameter} is "mean" or "variance". If \code{type} is "left", the returned confidence interval is \code{(lower_ci, Inf)} when \code{parameter} is "mean" or "variance". And, finally, is \code{type} is "right", the returned confidence interval is \code{(-Inf, upper_ci))} when \code{parameter} is "mean", and the returned confidence interval is \code{(0, upper_ci)} when \code{parameter} is "variance".
 }
 \examples{
 x <- rnorm(1000)
-ci_1pop_norm(x) # unknown variance and confidence interval for mean
+ci_1pop_norm(x) # confidence interval for the mean, unknown variance
 
 x <- rnorm(1000, sd = 2)
-ci_1pop_norm(x, sd_pop = 2) # known variance and confidence interval for mean
+ci_1pop_norm(x, sd_pop = 2) # confidence interval for mean, known variance
 
 x <- rnorm(1000, sd = 5)
-ci_1pop_norm(x, parameter = "variance") # confidence interval for variance
+ci_1pop_norm(x, parameter = "variance") # confidence interval for the variance
 
 }
